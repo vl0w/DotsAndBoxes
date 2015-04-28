@@ -1,1 +1,12 @@
 /bin/
+
+# Eclipse created folders and files #
+######################################
+.project
+.classpath
+
+# IntelliJ created folders and files #
+######################################
+*.iml
+*.eml
+.idea/
