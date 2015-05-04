@@ -1,4 +1,5 @@
-package ch.hslu.prg2.dotsandboxes;
+package ch.hslu.prg2.dotsandboxes.game;
+
 
 public class Move {
 	private Dot dot1;
