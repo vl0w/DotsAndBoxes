@@ -4,6 +4,7 @@
 ######################################
 .project
 .classpath
+.settings/
 
 # IntelliJ created folders and files #
 ######################################
