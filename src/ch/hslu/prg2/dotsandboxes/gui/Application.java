@@ -6,6 +6,10 @@ import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 
+import ch.hslu.prg2.dotsandboxes.Player;
+import ch.hslu.prg2.dotsandboxes.game.Game;
+import ch.hslu.prg2.dotsandboxes.game.GameFactory;
+
 public class Application extends JFrame {
 
 
@@ -16,13 +20,13 @@ public class Application extends JFrame {
 	}
 	
 	private void initUI(){
-		add(new Board());
-		
-	    setSize(250, 200);
+		add(new Board(2));		
+	    setSize(300, 300);
 
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        new SettingsDialog();
 	}
 
 	public static void main(String[] args){
@@ -33,6 +37,7 @@ public class Application extends JFrame {
                 ex.setVisible(true);
             }
         });
+        
 	}
 
 }
