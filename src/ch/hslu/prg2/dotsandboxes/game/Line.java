@@ -20,4 +20,9 @@ public class Line {
 	public PlayerColor getColor(){
 		return color;
 	}
+	
+	public boolean setColor(PlayerColor color){
+		this.color=color;
+		return true;
+	}
 }

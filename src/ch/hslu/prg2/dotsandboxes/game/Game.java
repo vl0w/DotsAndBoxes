@@ -6,16 +6,59 @@ public class Game {
 
 	private Player redPlayer;
 	private Player bluePlayer;
-	private GameBoardArray board;
+	private GameBoardArray gameboard;
+	private Move actualMove; 
 
-	Game(Player redPlayer, Player bluePlayer, int size) {
+	public Game(Player redPlayer, Player bluePlayer, int size) {
 		this.redPlayer = redPlayer;
 		this.bluePlayer = bluePlayer;
 	}
 	
 	public void startGame(int size){
-		board=new GameBoardArray();
-		board.createBoard(size);
+		gameboard=new GameBoardArray();
+		gameboard.createBoard(size);
+	}
+	
+	public boolean RedPlayerMove(){
+		boolean ret=false;
+		actualMove=redPlayer.makeMove(gameboard);
+		while(ret==false){
+			if(treatMove(actualMove)){
+				redPlayer.notifyMoved(gameboard);
+				bluePlayer.notifyMoved(gameboard);
+				return ret=true;
+			}
+			else{
+				redPlayer.notifyMoveFailed(gameboard);
+				actualMove=redPlayer.makeMove(gameboard);
+			}
+		}
+		return ret;
+	}
+	
+	public boolean BluePlayerMove(){
+		boolean ret=false;
+		actualMove=bluePlayer.makeMove(gameboard);
+		while(ret==false){
+			if(treatMove(actualMove)){
+				bluePlayer.notifyMoved(gameboard);
+				redPlayer.notifyMoved(gameboard);
+				return ret=true;
+			}
+			else{
+				bluePlayer.notifyMoveFailed(gameboard);
+				actualMove=bluePlayer.makeMove(gameboard);
+			}
+		}
+		return ret;
+	}
+	
+	public boolean treatMove(Move move){
+		boolean ret=false;
+		if(gameboard.setLine(move.getDot1(), move.getDot2(), move.getPlayerColor())){
+			return ret=true;
+		}
+		return ret;
 	}
 	
 	public void save(){

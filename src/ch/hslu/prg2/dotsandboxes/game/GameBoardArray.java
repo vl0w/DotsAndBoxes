@@ -54,6 +54,21 @@ public class GameBoardArray implements GameBoard {
 	public Line[] getBoard(){
 		return board;
 	}
+	
+	public boolean setLine(Dot dot1, Dot dot2, PlayerColor color){
+		boolean ret=false;
+		for(int i=0;i<numberoflines;i++){
+			if(board[i].getDot1().equals(dot1)){
+				if(board[i].getDot2().equals(dot2)){
+					if(board[i].getColor().equals(PlayerColor.NONE)){
+						board[i].setColor(color);
+						return ret=true;
+					}
+				}
+			}
+		}		
+		return ret;
+	}
 
 	@Override
 	public int size() {
