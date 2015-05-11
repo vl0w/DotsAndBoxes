@@ -6,15 +6,16 @@ public class Game {
 
 	private Player redPlayer;
 	private Player bluePlayer;
+	private GameBoardArray board;
 
 	Game(Player redPlayer, Player bluePlayer, int size) {
 		this.redPlayer = redPlayer;
 		this.bluePlayer = bluePlayer;
-		
 	}
 	
-	public void startGame(int size, Player playrRed, Player playerBlue){
-		new GameBoardArray().createBoard(size);
+	public void startGame(int size){
+		board=new GameBoardArray();
+		board.createBoard(size);
 	}
 	
 	public void save(){

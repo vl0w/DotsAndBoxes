@@ -9,4 +9,13 @@ public class Move {
 		this.dotOne = dotOne;
 		this.dotTwo = dotTwo;
 	}
+	public Dot getDot1(){
+		return dotOne;
+	}
+	public Dot getDot2(){
+		return dotTwo;
+	}
+	public PlayerColor getPlayerColor(){
+		return owner;
+	}
 }
