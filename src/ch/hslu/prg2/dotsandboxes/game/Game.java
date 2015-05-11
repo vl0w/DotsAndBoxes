@@ -13,8 +13,8 @@ public class Game {
 		
 	}
 	
-	public void start(){
-		
+	public void startGame(int size, Player playrRed, Player playerBlue){
+		GameBoardArray.createBoard(size);
 	}
 	
 	public void save(){

@@ -1,10 +1,16 @@
 package ch.hslu.prg2.dotsandboxes.game;
 
+import java.util.Arrays;
+
 public class GameBoardArray implements GameBoard {
+		
+	private int size;
+	private Line[][] board;
 	
-	
-	int[][] board = new int[4][4];
-	
+	public boolean createBoard(int size){
+		//Anhand der grösse Line Objekte erstellen
+		return true;
+	}
 	
 	@Override
 	public PlayerColor getLineColor(Dot dot1, Dot dot2) {
