@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 
 import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.game.Game;
-import ch.hslu.prg2.dotsandboxes.game.GameFactory;
 
 public class Application extends JFrame {
 	private Board board;
+	private int size =2;
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,8 +23,10 @@ public class Application extends JFrame {
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-		getContentPane().add(new Board(2));		
-
+		getContentPane().add(new Board(size));		
+		
+		Game game = new Game(new GUIPlayer(), new GUIPlayer());
+		game.startGame(size);
 		
         pack();
         
