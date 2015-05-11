@@ -9,4 +9,6 @@ public interface Player {
 	void notifyMoved(GameBoard board);
 
 	void notifyMoveFailed(GameBoard board);
+	
+	void notifyGameEnd(GameBoard board);
 }

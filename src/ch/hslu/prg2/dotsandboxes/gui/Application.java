@@ -11,7 +11,7 @@ import ch.hslu.prg2.dotsandboxes.game.Game;
 import ch.hslu.prg2.dotsandboxes.game.GameFactory;
 
 public class Application extends JFrame {
-
+	private Board board;
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,13 +20,15 @@ public class Application extends JFrame {
 	}
 	
 	private void initUI(){
-		add(new Board(2));		
-	    setSize(300, 300);
-
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        new SettingsDialog();
+		getContentPane().add(new Board(2));		
+
+		
+        pack();
+        
+        setVisible(true);
 	}
 
 	public static void main(String[] args){
