@@ -9,7 +9,7 @@ public class Game {
 	private GameBoardArray gameboard;
 	private Move actualMove; 
 
-	public Game(Player redPlayer, Player bluePlayer, int size) {
+	public Game(Player redPlayer, Player bluePlayer) {
 		this.redPlayer = redPlayer;
 		this.bluePlayer = bluePlayer;
 	}
@@ -17,6 +17,13 @@ public class Game {
 	public void startGame(int size){
 		gameboard=new GameBoardArray();
 		gameboard.createBoard(size);
+		gameLogic();
+	}
+	
+	public void gameLogic(){
+		RedPlayerMove();
+		BluePlayerMove();
+		//gameboard.getFullKästchen
 	}
 	
 	public boolean RedPlayerMove(){
