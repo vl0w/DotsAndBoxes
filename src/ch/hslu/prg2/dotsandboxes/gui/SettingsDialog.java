@@ -33,10 +33,15 @@ public class SettingsDialog extends JDialog implements ActionListener {
 		}
 		dialog.setVisible(true);
 	}
+	
+	public void askHostAddress() throws IOException {
+		String hostAddress = JOptionPane.showInputDialog("Enter IP address of the opponent");
+		// TODO starte GameClient mit Verbindungsversuch
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		// TODO Je nach Auswahl Spielmodus (Mensch, Netzwerk oder KI) setzen
 		
 	}
 
