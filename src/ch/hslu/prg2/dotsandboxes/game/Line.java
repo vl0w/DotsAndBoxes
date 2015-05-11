@@ -10,4 +10,14 @@ public class Line {
 		this.dot2=dot2;
 		this.color=PlayerColor.NONE;
 	}
+	
+	public Dot getDot1(){
+		return dot1;
+	}
+	public Dot getDot2(){
+		return dot2;
+	}
+	public PlayerColor getColor(){
+		return color;
+	}
 }

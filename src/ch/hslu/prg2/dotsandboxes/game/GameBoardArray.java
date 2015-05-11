@@ -1,21 +1,58 @@
 package ch.hslu.prg2.dotsandboxes.game;
 
-import java.util.Arrays;
-
 public class GameBoardArray implements GameBoard {
 		
 	private int size;
-	private Line[][] board;
+	private int numberoflines;
+	private Line[] board;
+	
+	public GameBoardArray(){
+		
+	}
 	
 	public boolean createBoard(int size){
-		//Anhand der grösse Line Objekte erstellen
+		//Anhand der Grösse Line Objekte erstellen
+		this.size=size;
+		int column=size;
+		int row=size;
+		int numberoflines=size*(size+1)*2;
+		board=new Line[numberoflines];
+		int position=0;
+		for(int i=0;i<row;i++){
+			for(int j=0;j<column;j++){
+				board[position]=new Line(new Dot(i,j),new Dot(i,j+1));
+				position++;
+				board[position]=new Line(new Dot(i,j),new Dot(i+1,j));
+				position++;
+			}
+			board[position]=new Line(new Dot(i,column),new Dot(i+1,column));
+			position++;
+			
+		}
+		for(int z=0;z<column;z++){
+			board[position]=new Line(new Dot(row,z),new Dot(row,z+1));
+			position++;
+		}
+		
 		return true;
 	}
 	
 	@Override
 	public PlayerColor getLineColor(Dot dot1, Dot dot2) {
-		// TODO Auto-generated method stub
-		return null;
+		PlayerColor ret=PlayerColor.NONE;
+		for(int i=0;i<numberoflines;i++){
+			if(board[i].getDot1().equals(dot1)){
+				if(board[i].getDot2().equals(dot2)){
+					ret=board[i].getColor();
+					return ret;
+				}
+			}
+		}
+		return ret;
+	}
+	
+	public Line[] getBoard(){
+		return board;
 	}
 
 	@Override

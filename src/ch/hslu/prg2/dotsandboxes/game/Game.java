@@ -14,7 +14,7 @@ public class Game {
 	}
 	
 	public void startGame(int size, Player playrRed, Player playerBlue){
-		GameBoardArray.createBoard(size);
+		new GameBoardArray().createBoard(size);
 	}
 	
 	public void save(){
