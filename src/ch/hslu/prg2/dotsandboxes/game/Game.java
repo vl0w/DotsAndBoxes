@@ -17,12 +17,12 @@ public class Game {
 	public void startGame(int size){
 		gameboard=new GameBoardArray();
 		gameboard.createBoard(size);
-		gameLogic();
+		//gameLogic();
 	}
 	
 	public void gameLogic(){
-		RedPlayerMove();
-		BluePlayerMove();
+		//RedPlayerMove();
+		//BluePlayerMove();
 		//gameboard.getFullKästchen
 	}
 	
