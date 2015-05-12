@@ -24,10 +24,10 @@ public class Application extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 		getContentPane().add(new Board(size));		
-		
-		Game game = new Game(new GUIPlayer(), new GUIPlayer());
+if(false){		
+		Game game = new Game(new GUIPlayer(true), new GUIPlayer(false));
 		game.startGame(size);
-		
+}		
         pack();
         
         setVisible(true);

@@ -12,11 +12,14 @@ import ch.hslu.prg2.dotsandboxes.game.GameBoard;
 
 public class Board extends JPanel {// implements Player {
 	private JPanel scoringBoard;
-	private JLabel player1;
-	private JLabel player2;
-	private JLabel scores;
+	private JLabel labPlayer1;
+	private JLabel labPlayer2;
+	private JLabel labScores;
 //	private JPanel gameBoard;
 	private static GameBoard gameBoard;
+	private static GUIPlayer player1;
+	private static GUIPlayer player2;
+	private static GUIPlayer actualPlayer;
 
 	int boarder = 20;
 	int distance = 70;
@@ -37,18 +40,18 @@ public class Board extends JPanel {// implements Player {
 
 	private JPanel initScoringBoard(){
 		scoringBoard = new JPanel(true);
-		player1 = new JLabel("Player 1");
-		player2 = new JLabel("Player 2");
-		scores = new JLabel("0 : 0");
+		labPlayer1 = new JLabel("Player 1");
+		labPlayer2 = new JLabel("Player 2");
+		labScores = new JLabel("0 : 0");
 		
-		player1.setBackground(Color.BLUE);
-		player2.setBackground(Color.RED);
-		player1.setVisible(true);
-		player2.setVisible(true);
-		scores.setVisible(true);
-		scoringBoard.add(player1);
-		scoringBoard.add(scores);
-		scoringBoard.add(player2);
+		labPlayer1.setBackground(Color.BLUE);
+		labPlayer2.setBackground(Color.RED);
+		labPlayer1.setVisible(true);
+		labPlayer2.setVisible(true);
+		labScores.setVisible(true);
+		scoringBoard.add(labPlayer1);
+		scoringBoard.add(labScores);
+		scoringBoard.add(labPlayer2);
 		scoringBoard.setVisible(true);
 		return scoringBoard;
 	}
@@ -190,8 +193,31 @@ public class Board extends JPanel {// implements Player {
 		return gameBoard;
 	}
 
-	public void setGameBoard(GameBoard gameBoard) {
+	public static void setGameBoard(GameBoard gameBoard) {
 		Board.gameBoard = gameBoard;
 	}
 
+	public static GUIPlayer getPlayer2() {
+		return player2;
+	}
+
+	public static void setPlayer2(GUIPlayer player2) {
+		Board.player2 = player2;
+	}
+
+	public static GUIPlayer getPlayer1() {
+		return player1;
+	}
+
+	public static void setPlayer1(GUIPlayer player1) {
+		Board.player1 = player1;
+	}
+
+	public static void setActualPlayer(GUIPlayer player){
+		Board.actualPlayer = player1;
+	}
+	
+	public static GUIPlayer getActualPlayer(){
+		return Board.actualPlayer;
+	}
 }
