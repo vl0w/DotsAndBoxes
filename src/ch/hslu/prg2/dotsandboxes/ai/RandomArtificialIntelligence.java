@@ -41,6 +41,11 @@ public class RandomArtificialIntelligence implements Player {
 		// This logic doesn't care :)
 	}
 
+	@Override
+	public void notifyGameEnd(GameBoard board) {
+		// This logic doesn't care :)
+	}
+
 	private boolean lineIsValid(Dot dotOne, Dot dotTwo, GameBoard board) {
 		boolean dotOneValid = isInGameBoard(dotOne, board.size());
 		boolean dotTwoValid = isInGameBoard(dotTwo, board.size());
