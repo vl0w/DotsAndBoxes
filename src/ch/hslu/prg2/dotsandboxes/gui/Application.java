@@ -23,9 +23,9 @@ public class Application extends JFrame {
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-		getContentPane().add(new Board(size));		
-if(false){		
-		Game game = new Game(new GUIPlayer(true), new GUIPlayer(false));
+		getContentPane().add(new Board(size));
+if(true){		
+		Game game = new Game(Board.getActualPlayer(), Board.getPlayer2());
 		game.startGame(size);
 }		
         pack();

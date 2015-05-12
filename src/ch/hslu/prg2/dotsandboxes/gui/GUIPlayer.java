@@ -1,13 +1,11 @@
 package ch.hslu.prg2.dotsandboxes.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import ch.hslu.prg2.dotsandboxes.Player;
+import ch.hslu.prg2.dotsandboxes.game.Dot;
 import ch.hslu.prg2.dotsandboxes.game.GameBoard;
 import ch.hslu.prg2.dotsandboxes.game.Move;
 
-public class GUIPlayer implements Player, ActionListener {
+public class GUIPlayer implements Player {
 	
 	private boolean moved = false;
 	private Move actualMove;
@@ -64,10 +62,8 @@ public class GUIPlayer implements Player, ActionListener {
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		LineButton line= (LineButton) e.getSource();
-		actualMove = new Move(line.getD1(),line.getD2());
+	public void linePressed(Dot d1, Dot d2){;
+		actualMove = new Move(d1,d2);
 		moved = true;		
 	}
 

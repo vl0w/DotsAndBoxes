@@ -36,6 +36,11 @@ public class Board extends JPanel {// implements Player {
 		add(initScoringBoard(),BorderLayout.NORTH);
 		add(new DotsBoard(size),BorderLayout.CENTER);	
 		setVisible(true);
+		
+		Board.setPlayer1(new GUIPlayer(true));
+		Board.setPlayer2(new GUIPlayer(false));
+		Board.setActualPlayer(Board.getPlayer1());
+
 	}
 
 	private JPanel initScoringBoard(){

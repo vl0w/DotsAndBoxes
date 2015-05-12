@@ -2,7 +2,6 @@ package ch.hslu.prg2.dotsandboxes.gui;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +14,10 @@ import ch.hslu.prg2.dotsandboxes.game.PlayerColor;
 
 public class LineButton extends JButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8608522602233328374L;
 	private Color hoverBackgroundColor = Color.blue;
 	private Color pressedBackgroundColor = Color.RED;
 
@@ -64,6 +67,7 @@ public class LineButton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setBackground(Color.RED);
+				Board.getActualPlayer().linePressed(getD1(),getD2());
 
 			}
 
