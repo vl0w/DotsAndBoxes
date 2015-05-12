@@ -15,8 +15,9 @@ import ch.hslu.prg2.dotsandboxes.game.PlayerColor;
 public class LineButton extends JButton {
 
 	private static final long serialVersionUID = 8608522602233328374L;
-	private Color hoverBackgroundColor = Color.blue;
-	private Color pressedBackgroundColor = Color.RED;
+	private final static Color HOVER_BACKGROUND_COLOR   = Color.GRAY;
+	private final static Color PRESSED_BACKGROUND_COLOR = Color.RED;
+	public final static Color DEFAULT_LINE_COLOR 		= Color.GREEN;
 
 	private Dot d1;
 	private Dot d2;
@@ -45,16 +46,16 @@ public class LineButton extends JButton {
 			public void stateChanged(ChangeEvent e) {
 				if (getBoard().getGameBoard()!=null && (getBoard().getGameBoard().getLineColor(getD1(), getD2()) == PlayerColor.NONE)) {
 					if (getModel().isRollover()) {
-						setBackground(hoverBackgroundColor);
+						setBackground(HOVER_BACKGROUND_COLOR);
 
 						setCursor(Cursor
 								.getPredefinedCursor(Cursor.HAND_CURSOR));
 					} else if (getModel().isPressed()) {
 						setCursor(Cursor
 								.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						setBackground(pressedBackgroundColor);
+						setBackground(PRESSED_BACKGROUND_COLOR);
 					} else {
-						setBackground(Color.GREEN);
+						setBackground(DEFAULT_LINE_COLOR);
 						setCursor(Cursor
 								.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 

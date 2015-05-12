@@ -32,13 +32,15 @@ public class GUIPlayer implements Player {
 						e.printStackTrace();
 					}
 				}
+				System.out.println("Whuup_Thread_Verlassen");
 				
 				moved=false;
 			}
 			
 		};t.start();
-		
+		System.out.println("Whuup_Thread_kurz vor Ende");
 		return actualMove;
+
 	}
 
 	@Override
