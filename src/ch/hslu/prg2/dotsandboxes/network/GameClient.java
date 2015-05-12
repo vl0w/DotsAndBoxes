@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 /**
  * A TCP game client.
@@ -29,10 +30,19 @@ public class GameClient {
     /**
      * Create a TCP game client with specified host address.
      */
-    public GameClient(String hostAddress){
-        clientSocket = new Socket(hostAddress, PORT_NUMBER);
-        inStream = new BufferedReader(
-                new InputStreamReader(clientSocket.getInputStream()));
-        outStream = new PrintWriter(clientSocket.getOutputStream());
+    public GameClient(String hostAddress) throws IOException {
+        try (
+            clientSocket = new Socket(hostAddress, PORT_NUMBER);
+            inStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            outStream = new PrintWriter(clientSocket.getOutputStream());
+        ) {
+           //TODO Normalfall, Game Objekte werden gelesen und weitergeleitet
+        } catch (UnknownHostException e) {
+            System.out.println("Host " + hostAddress + "doesn't exist");
+        } catch (IOException e) {
+            System.out.println("Couldn't connect");
+            System.exit(1);
+        }
+
     }
 }

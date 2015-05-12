@@ -1,5 +1,6 @@
 package ch.hslu.prg2.dotsandboxes.network;
 
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.BufferedReader;
@@ -16,10 +17,24 @@ public class GameServer {
     private ServerSocket serverSocket;
     private Socket clientSocket;
 
+    private BufferedReader inStream;
+    private PrintWriter outStream;
+
     /**
      * Create a TCP game server.
      */
-    public GameServer() {
-        serverSocket = new ServerSocket(PORT_NUMBER);
+    public GameServer() throws IOException {
+        try(
+            serverSocket = new ServerSocket(PORT_NUMBER);
+            clientSocket = serverSocket.accept();
+            inStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            outStream = new PrintWriter(clientSocket.getOutputStream(), true);
+        ) {
+            //TODO Normfall, Game Objekte werden gelesen und weitergeleitet
+        } catch (IOException e) {
+            System.out.println("Exception caught when trying to listen to port " + PORT_NUMBER
+                    + " or listening for a connection");
+            System.out.println(e.getMessage());
+        }
     }
 }
