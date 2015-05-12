@@ -15,11 +15,12 @@ public class Board extends JPanel {// implements Player {
 	private JLabel labPlayer1;
 	private JLabel labPlayer2;
 	private JLabel labScores;
-//	private JPanel gameBoard;
-	private static GameBoard gameBoard;
-	private static GUIPlayer player1;
-	private static GUIPlayer player2;
-	private static GUIPlayer actualPlayer;
+
+	private DotsBoard dotsBoard;
+	private GameBoard gameBoard;
+	private GUIPlayer player1;
+	private GUIPlayer player2;
+	private GUIPlayer actualPlayer;
 
 	int boarder = 20;
 	int distance = 70;
@@ -34,12 +35,15 @@ public class Board extends JPanel {// implements Player {
 		setPreferredSize(new Dimension(500,500));
 		
 		add(initScoringBoard(),BorderLayout.NORTH);
-		add(new DotsBoard(size),BorderLayout.CENTER);	
+
+		dotsBoard = new DotsBoard(size,this);
+		add(dotsBoard,BorderLayout.CENTER);	
+		
 		setVisible(true);
 		
-		Board.setPlayer1(new GUIPlayer(true));
-		Board.setPlayer2(new GUIPlayer(false));
-		Board.setActualPlayer(Board.getPlayer1());
+		setPlayer1(new GUIPlayer(true,this));
+		setPlayer2(new GUIPlayer(false,this));
+		setActualPlayer(getPlayer1());
 
 	}
 
@@ -194,35 +198,40 @@ public class Board extends JPanel {// implements Player {
 	}
 */
 
-	public static GameBoard getGameBoard() {
+	public GameBoard getGameBoard() {
 		return gameBoard;
 	}
 
-	public static void setGameBoard(GameBoard gameBoard) {
-		Board.gameBoard = gameBoard;
+	public void setGameBoard(GameBoard gameBoard) {
+		this.gameBoard = gameBoard;
 	}
 
-	public static GUIPlayer getPlayer2() {
+	public GUIPlayer getPlayer2() {
 		return player2;
 	}
 
-	public static void setPlayer2(GUIPlayer player2) {
-		Board.player2 = player2;
+	public void setPlayer2(GUIPlayer player2) {
+		this.player2 = player2;
 	}
 
-	public static GUIPlayer getPlayer1() {
+	public GUIPlayer getPlayer1() {
 		return player1;
 	}
 
-	public static void setPlayer1(GUIPlayer player1) {
-		Board.player1 = player1;
+	public void setPlayer1(GUIPlayer player1) {
+		this.player1 = player1;
 	}
 
-	public static void setActualPlayer(GUIPlayer player){
-		Board.actualPlayer = player1;
+	public void setActualPlayer(GUIPlayer player){
+		this.actualPlayer = player1;
 	}
 	
-	public static GUIPlayer getActualPlayer(){
-		return Board.actualPlayer;
+	public GUIPlayer getActualPlayer(){
+		return this.actualPlayer;
 	}
+
+	public DotsBoard getDotsBoard() {
+		return this.dotsBoard;
+	}
+
 }

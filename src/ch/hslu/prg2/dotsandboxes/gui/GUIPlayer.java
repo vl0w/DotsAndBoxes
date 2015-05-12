@@ -9,21 +9,18 @@ public class GUIPlayer implements Player {
 	
 	private boolean moved = false;
 	private Move actualMove;
-	public boolean isLocalPlayer() {
-		return isLocalPlayer;
-	}
-
-	public void setLocalPlayer(boolean isLocalPlayer) {
-		this.isLocalPlayer = isLocalPlayer;
-	}
-
 	private boolean isLocalPlayer;
-	public GUIPlayer(boolean isLocalPlayer) {
+	private Board board;
+
+	public GUIPlayer(boolean isLocalPlayer, Board board) {
 		this.isLocalPlayer = isLocalPlayer;
+		this.board = board;
 	}
 
 	@Override
 	public Move makeMove(GameBoard board) {
+		getBoard().setGameBoard(board);
+		getBoard().getDotsBoard().drawLines();
 		Thread t = new Thread(){
 
 			@Override
@@ -46,8 +43,8 @@ public class GUIPlayer implements Player {
 
 	@Override
 	public void notifyMoved(GameBoard board) {
-		Board.setGameBoard(board);
-		Board.setActualPlayer((Board.getPlayer1()==this)?Board.getPlayer2():Board.getPlayer1());
+		getBoard().setGameBoard(board);
+		getBoard().setActualPlayer((getBoard().getPlayer1()==this)?getBoard().getPlayer2():getBoard().getPlayer1());
 	}
 
 	@Override
@@ -66,5 +63,21 @@ public class GUIPlayer implements Player {
 		actualMove = new Move(d1,d2);
 		moved = true;		
 	}
+	
+	public boolean isLocalPlayer() {
+		return isLocalPlayer;
+	}
 
+	public void setLocalPlayer(boolean isLocalPlayer) {
+		this.isLocalPlayer = isLocalPlayer;
+	}
+
+	@Override
+	public String toString(){
+		return (isLocalPlayer())? "Local Player": "Second Player";
+	}
+
+	public Board getBoard() {
+		return board;
+	}
 }

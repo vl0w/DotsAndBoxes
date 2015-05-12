@@ -1,12 +1,9 @@
 package ch.hslu.prg2.dotsandboxes.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
-
-import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.game.Game;
 
 public class Application extends JFrame {
@@ -23,9 +20,12 @@ public class Application extends JFrame {
         setTitle("Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-		getContentPane().add(new Board(size));
+		board = new Board(size);
+        getContentPane().add(board);
+
+		
 if(true){		
-		Game game = new Game(Board.getActualPlayer(), Board.getPlayer2());
+		Game game = new Game(getBoard().getActualPlayer(), getBoard().getPlayer2());
 		game.startGame(size);
 }		
         pack();
@@ -42,6 +42,9 @@ if(true){
             }
         });
         
+	}
+	public Board getBoard(){
+		return board;
 	}
 
 }

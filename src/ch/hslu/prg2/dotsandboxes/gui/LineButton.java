@@ -14,21 +14,21 @@ import ch.hslu.prg2.dotsandboxes.game.PlayerColor;
 
 public class LineButton extends JButton {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8608522602233328374L;
 	private Color hoverBackgroundColor = Color.blue;
 	private Color pressedBackgroundColor = Color.RED;
 
 	private Dot d1;
 	private Dot d2;
+	private Board board;
 
-	public LineButton(Dot d1, Dot d2) {
+	public LineButton(Dot d1, Dot d2,Board board) {
 		super();
 
 		this.d1 = d1;
 		this.d2 = d2;
+		this.board = board;
+		
 		System.out.println("LineButton created Dot1: " + d1.toString()
 				+ " Dot2: " + d2.toString());
 		setBorderPainted(false);
@@ -43,7 +43,7 @@ public class LineButton extends JButton {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				if (true ||Board.getGameBoard().getLineColor(getD1(), getD2()) != PlayerColor.NONE) {
+				if (getBoard().getGameBoard()!=null && (getBoard().getGameBoard().getLineColor(getD1(), getD2()) == PlayerColor.NONE)) {
 					if (getModel().isRollover()) {
 						setBackground(hoverBackgroundColor);
 
@@ -66,13 +66,14 @@ public class LineButton extends JButton {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setBackground(Color.RED);
-				Board.getActualPlayer().linePressed(getD1(),getD2());
-
+				//setBackground(Color.RED);
+				getBoard().getActualPlayer().linePressed(getD1(),getD2());
+				System.out.println("LinePressed from "+getBoard().getActualPlayer().toString()+
+						" "+getD1().toString()+" "+getD2().toString());
 			}
-
 		});
 
+		
 	}
 
 	/*
@@ -98,4 +99,9 @@ public class LineButton extends JButton {
 	public void setD2(Dot d2) {
 		this.d2 = d2;
 	}
+
+	public Board getBoard() {
+		return board;
+	}
+
 }

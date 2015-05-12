@@ -2,13 +2,6 @@ package ch.hslu.prg2.dotsandboxes.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.MouseAdapter;
-import java.awt.geom.Rectangle2D;
-
-import javafx.scene.input.MouseEvent;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import ch.hslu.prg2.dotsandboxes.game.Dot;
@@ -16,14 +9,20 @@ import ch.hslu.prg2.dotsandboxes.game.Dot;
 
 
 public class DotsBoard extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5291492139606723465L;
+	private Board board;
 	private int size;
 	
 	int boarder = 20;
 	int distance = 100;
 	int radius = 5;
 
-	public DotsBoard(int size) {
+	public DotsBoard(int size, Board board) {
 		this.size = size;
+		this.board = board;
 		setBackground(Color.CYAN);
 		setLayout(null);
 		drawLines();
@@ -31,7 +30,7 @@ public class DotsBoard extends JPanel {
 	}
 
 	
-	private void drawLines(){
+	public void drawLines(){
 		int x,y;
 		for (int i=0; i<=size;i++){
 			for(int j = 0; j<=size;j++){
@@ -39,8 +38,8 @@ public class DotsBoard extends JPanel {
 				y = boarder+j*distance;//+scoringBoard.getHeight();
 				//xl = xc+radius/2;
 				//yl = yc-radius/2;
-				LineButton but1 = new LineButton(new Dot(i,j),new Dot(i+1,j));
-				LineButton but2 = new LineButton(new Dot(i,j),new Dot(i,j+1));
+				LineButton but1 = new LineButton(new Dot(i,j),new Dot(i+1,j),getBoard());
+				LineButton but2 = new LineButton(new Dot(i,j),new Dot(i,j+1),getBoard());
 
 				if (i<size){
 					but1.setBounds(x+radius,y-radius/2,distance-2*radius,radius);
@@ -61,7 +60,7 @@ public class DotsBoard extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		int xc,yc,xl,yl;
+		int xc,yc;
 		for (int i=0; i<=size;i++){
 			for(int j = 0; j<=size;j++){
 				xc = boarder+i*distance;
@@ -77,7 +76,6 @@ public class DotsBoard extends JPanel {
 */				drawCircle(g,xc,yc,radius);
 			}
 		}
-
 	}
 	
 	public static void drawCircle(Graphics g, int x, int y, int radius) {
@@ -97,5 +95,10 @@ public class DotsBoard extends JPanel {
 			
 	}
 */
+
+
+	public Board getBoard() {
+		return board;
+	}
 
 }
