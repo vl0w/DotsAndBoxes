@@ -55,6 +55,17 @@ public class GameBoardArray implements GameBoard {
 		return ret;
 	}
 	
+	
+	public int getLinePosition(Line a){
+		int ret=0;
+		for(int i=0;i<numberoflines;i++){
+			if(board[i].equals(a)){
+			ret=i;
+			}
+		}
+		return ret;
+	}
+	
 	public Line[] getBoard(){
 		return board;
 	}
@@ -77,24 +88,134 @@ public class GameBoardArray implements GameBoard {
 	
 	public void checkSquare(Line a){
 		PlayerColor color=a.getColor();
+		int position=this.getLinePosition(a);
+		int offset=2+size*2;
 		int dot1X=a.getDot1().getX();
 		int dot1Y=a.getDot1().getY();
 		int dot2X=a.getDot2().getX();
 		int dot2Y=a.getDot2().getY();
 		
+		//Linker Rand
 		if((dot1X==0)&&(dot2X==0)){
-			
+			if(board[position+1].getColor()!=PlayerColor.NONE){
+				if(board[position+2].getColor()!=PlayerColor.NONE){
+					if(board[position+offset].getColor()!=PlayerColor.NONE){
+						
+						if(color==PlayerColor.BLUE){
+							this.blueSquares++;
+						}
+						else{
+							this.redSquares++;
+						}		
+						
+					}
+				}	
+			}
 		}
 		
+		//Rechter Rand
 		if((dot1X==this.size)&&(dot2X==this.size)){
-			
+			if(board[position-1].getColor()!=PlayerColor.NONE){
+				if(board[position-2].getColor()!=PlayerColor.NONE){
+					if(board[position+offset-2].getColor()!=PlayerColor.NONE){
+						
+						if(color==PlayerColor.BLUE){
+							this.blueSquares++;
+						}
+						else{
+							this.redSquares++;
+						}		
+						
+					}
+				}	
+			}
 		}
 		
+		//Oberer Rand
 		if((dot1Y==0)&&(dot2Y==0)){
-			
+			if(board[position+1].getColor()!=PlayerColor.NONE){
+				if(board[position-1].getColor()!=PlayerColor.NONE){
+					if(board[position+offset-1].getColor()!=PlayerColor.NONE){
+						
+						if(color==PlayerColor.BLUE){
+							this.blueSquares++;
+						}
+						else{
+							this.redSquares++;
+						}		
+						
+					}
+				}	
+			}
 		}
 		
+		//Unterer Rand
 		if((dot1Y==this.size)&&(dot2Y==this.size)){
+			 int n=position-(offset-1)-dot1X;
+			 
+			 if(board[n].getColor()!=PlayerColor.NONE){
+					if(board[n+1].getColor()!=PlayerColor.NONE){
+						if(board[n+2].getColor()!=PlayerColor.NONE){
+							
+							if(color==PlayerColor.BLUE){
+								this.blueSquares++;
+							}
+							else{
+								this.redSquares++;
+							}		
+							
+						}
+					}	
+				}
+		}
+		
+		//Für alle Linien die nicht am Rand liegen
+		else{
+			//Falls es eine Waagrechte Linie ist
+			if(dot1Y==dot2Y){
+				
+				//Oberes Kästchen
+				if(board[position-offset].getColor()!=PlayerColor.NONE){
+					if(board[position-offset+1].getColor()!=PlayerColor.NONE){
+						if(board[position-offset+2].getColor()!=PlayerColor.NONE){
+							
+							if(color==PlayerColor.BLUE){
+								this.blueSquares++;
+							}
+							else{
+								this.redSquares++;
+							}		
+							
+						}
+					}	
+				}
+				
+				//Unteres Kästchen
+				if(board[position-1].getColor()!=PlayerColor.NONE){
+					if(board[position+1].getColor()!=PlayerColor.NONE){
+						if(board[position+offset-1].getColor()!=PlayerColor.NONE){
+							
+							if(color==PlayerColor.BLUE){
+								this.blueSquares++;
+							}
+							else{
+								this.redSquares++;
+							}		
+							
+						}
+					}	
+				}
+				
+				
+				
+			}
+			
+			//Falls es eine senkrechte Linie ist
+			if(dot1X==dot2X){
+				//anderer Fall da letzte Linie auch miteinbezogen werden muss
+				
+				
+			}
 			
 		}
 				
