@@ -1,6 +1,6 @@
 package ch.hslu.prg2.dotsandboxes.game;
 
-import ch.hslu.prg2.dotsandboxes.Player;
+import ch.hslu.prg2.dotsandboxes.v2.Player;
 
 public class Game {
 
@@ -24,7 +24,7 @@ public class Game {
 	public void gameLogic(){
 		RedPlayerMove();
 		BluePlayerMove();
-		//gameboard.getFullKästchen
+		//gameboard.getFullKï¿½stchen
 	}
 	
 	public boolean RedPlayerMove(){

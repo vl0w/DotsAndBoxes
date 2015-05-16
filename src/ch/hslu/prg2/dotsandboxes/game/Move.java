@@ -1,21 +1,27 @@
 package ch.hslu.prg2.dotsandboxes.game;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
 	private Dot dotOne;
 	private Dot dotTwo;
 	private PlayerColor owner;
 
-	public Move(Dot dotOne, Dot dotTwo) {
+	public Move(Dot dotOne, Dot dotTwo, PlayerColor owner) {
 		this.dotOne = dotOne;
 		this.dotTwo = dotTwo;
+		this.owner = owner;
 	}
-	public Dot getDot1(){
+
+	public Dot getDot1() {
 		return dotOne;
 	}
-	public Dot getDot2(){
+
+	public Dot getDot2() {
 		return dotTwo;
 	}
-	public PlayerColor getPlayerColor(){
+
+	public PlayerColor getPlayerColor() {
 		return owner;
 	}
 }

@@ -1,14 +1,15 @@
-package ch.hslu.prg2.dotsandboxes;
+package ch.hslu.prg2.dotsandboxes.v2;
 
-import ch.hslu.prg2.dotsandboxes.game.GameBoard;
-import ch.hslu.prg2.dotsandboxes.game.Move;
+import ch.hslu.prg2.dotsandboxes.game.PlayerColor;
 
 public interface Player {
-	Move makeMove(GameBoard board);
+	void gameStarted();
 
-	void notifyMoved(GameBoard board);
+	void gameEnded();
 
-	void notifyMoveFailed(GameBoard board);
-	
-	void notifyGameEnd(GameBoard board);
+	void yourTurn();
+
+	void oponnentTurn();
+
+	PlayerColor getColor();
 }
