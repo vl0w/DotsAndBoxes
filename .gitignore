@@ -11,3 +11,8 @@
 *.iml
 *.eml
 .idea/
+
+# Build process #
+#################
+/build/
+build.xml
