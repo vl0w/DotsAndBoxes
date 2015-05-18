@@ -99,7 +99,7 @@ public class SettingsDialog implements ActionListener {
 		sliderPanel.setSize(450, 50);
 		sliderPanel.setLayout(new GridLayout(2, 1));
 
-		slider = new JSlider(3, 10, 5);
+		slider = new JSlider(3, 9, 5);
 		slider.setMajorTickSpacing(2);
 		slider.setMinorTickSpacing(1);
 		slider.setPaintTicks(true); // Striche werden angezeigt
