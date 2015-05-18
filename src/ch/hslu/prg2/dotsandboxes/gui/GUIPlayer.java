@@ -71,5 +71,5 @@ public class GUIPlayer implements Player {
 
 	public Board getBoard() {
 		return board;
-	}
+	}	
 }

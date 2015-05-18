@@ -3,10 +3,12 @@ package ch.hslu.prg2.dotsandboxes.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ch.hslu.prg2.dotsandboxes.game.Dot;
 import ch.hslu.prg2.dotsandboxes.game.GameBoard;
 
 
@@ -22,13 +24,15 @@ public class Board extends JPanel {// implements Player {
 	private GUIPlayer player2;
 	private GUIPlayer actualPlayer;
 	
-	int size;
+//	private List<GameViewListener> listeners;
+	
+	private int size;
 	private static final long serialVersionUID = 10L;
 
 	public Board(int size) {
 		super(new BorderLayout(),true);
 		this.size = size;
-
+//		listener = new List();
 		dotsBoard = new DotsBoard(size,this);
 
 		add(initScoringBoard(),BorderLayout.NORTH);
@@ -97,5 +101,25 @@ public class Board extends JPanel {// implements Player {
 	public DotsBoard getDotsBoard() {
 		return this.dotsBoard;
 	}
-
+/*	
+	public void addViewListener(GameViewListener listener){
+		listeners.add(listener);
+	}
+	
+	public void removeViewListener(GameViewListener listener){
+		listeners.remove(listener);
+	}
+*/	
+	protected void linePressed(Dot d1, Dot d2){
+/*	
+		for(GameViewListener listener: listeners){
+			listeners.onLineSelected(d1,d2);
+		}
+*/
+	}
+	
+	public void update(GameBoard board){
+		setGameBoard(board);
+		dotsBoard.drawLines();
+	}
 }

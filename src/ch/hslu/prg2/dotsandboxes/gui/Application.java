@@ -30,7 +30,7 @@ public class Application extends JFrame {
         setLocationRelativeTo(null);
 		SettingsDialog settings = new SettingsDialog();
 
-		if (settings.isReadyToStart){
+		if (settings.isReadyToStart()){
 		
 			board = new Board(settings.getSize());
 			getContentPane().add(board);

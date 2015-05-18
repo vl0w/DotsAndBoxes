@@ -16,12 +16,14 @@ public class DotsBoard extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5291492139606723465L;
+
+	private static final int boarder = 20;
+	private static final int distance = 100;
+	private static final int radius = 5;
+	
 	private Board board;
 	private int size;
 	
-	int boarder = 20;
-	int distance = 100;
-	int radius = 5;
 
 	public DotsBoard(int size, Board board) {
 		this.size = size;

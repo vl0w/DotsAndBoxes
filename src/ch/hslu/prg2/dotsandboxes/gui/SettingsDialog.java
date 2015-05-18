@@ -25,13 +25,11 @@ import javax.swing.event.ChangeListener;
 
 public class SettingsDialog implements ActionListener {
 
-	JDialog dialog;
-	JPanel enemy;
-	JPanel fieldSize;
-	JTextField textField;
-	ButtonGroup butGroup;
-	JSlider slider;
-	Boolean isReadyToStart = false;
+	private JDialog dialog;
+	private JTextField textField;
+	private ButtonGroup butGroup;
+	private JSlider slider;
+	private Boolean isReadyToStart = false;
 
 	private static final String[] PLAYERTYPES = {"Mensch","KI","Netzwerk"};
 	
@@ -88,7 +86,9 @@ public class SettingsDialog implements ActionListener {
 		sliderPanel.setSize(450,50);
 		sliderPanel.setLayout(new GridLayout(2, 1));
 		
-		slider = new JSlider(3, 20,5);
+		slider = new JSlider(3, 10,5);
+		slider.setMajorTickSpacing(2);
+		slider.setMinorTickSpacing(1);
 		slider.setPaintTicks(true);    //Striche werden angezeigt
 		slider.setPaintLabels(true);  //Zahlen werden nicht angezeigt
 		slider.setPaintTrack(true);
@@ -109,7 +109,7 @@ public class SettingsDialog implements ActionListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				isReadyToStart = true;
+				setIsReadyToStart(true);
 				dialog.setVisible(false);
 				dialog.dispose();
 			}
@@ -118,7 +118,7 @@ public class SettingsDialog implements ActionListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				isReadyToStart = false;
+				setIsReadyToStart(false);
 				dialog.setVisible(false);
 				dialog.dispose();				
 			}
@@ -145,6 +145,14 @@ public class SettingsDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Je nach Auswahl Spielmodus (Mensch, Netzwerk oder KI) setzen
 		
+	}
+
+	public Boolean isReadyToStart() {
+		return isReadyToStart;
+	}
+
+	public void setIsReadyToStart(Boolean isReadyToStart) {
+		this.isReadyToStart = isReadyToStart;
 	}
 
 	
