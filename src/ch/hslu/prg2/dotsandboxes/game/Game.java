@@ -17,14 +17,12 @@ public class Game {
 	public void startGame(int size){
 		gameboard=new GameBoardArray();
 		gameboard.createBoard(size);
-		actualMove=redPlayer.makeMove(gameboard);
-		//gameLogic();
+		gameLogic();
 	}
 	
 	public void gameLogic(){
 		RedPlayerMove();
 		BluePlayerMove();
-		//gameboard.getFullKästchen
 	}
 	
 	public boolean RedPlayerMove(){
@@ -64,7 +62,7 @@ public class Game {
 	public boolean treatMove(Move move){
 		boolean ret=false;
 		if(gameboard.setLine(move.getDot1(), move.getDot2(), move.getPlayerColor())){
-			return ret=true;
+			ret=true;
 		}
 		return ret;
 	}
