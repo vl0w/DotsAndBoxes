@@ -9,8 +9,8 @@ import javax.swing.JButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ch.hslu.prg2.dotsandboxes.game.Dot;
-import ch.hslu.prg2.dotsandboxes.game.PlayerColor;
+import ch.hslu.prg2.dotsandboxes.model.Dot;
+import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 
 public class LineButton extends JButton {
 

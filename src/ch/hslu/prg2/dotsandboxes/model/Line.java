@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.game;
+package ch.hslu.prg2.dotsandboxes.model;
 
 public class Line {
 	private Dot dot1;

@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.game;
+package ch.hslu.prg2.dotsandboxes.model;
 
 import java.io.Serializable;
 

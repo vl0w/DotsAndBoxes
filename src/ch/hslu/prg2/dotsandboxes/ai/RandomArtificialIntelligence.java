@@ -2,10 +2,10 @@ package ch.hslu.prg2.dotsandboxes.ai;
 
 import java.util.Random;
 
-import ch.hslu.prg2.dotsandboxes.game.Dot;
-import ch.hslu.prg2.dotsandboxes.game.GameBoard;
-import ch.hslu.prg2.dotsandboxes.game.Move;
-import ch.hslu.prg2.dotsandboxes.game.PlayerColor;
+import ch.hslu.prg2.dotsandboxes.model.Dot;
+import ch.hslu.prg2.dotsandboxes.model.GameBoard;
+import ch.hslu.prg2.dotsandboxes.model.Move;
+import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 import ch.hslu.prg2.dotsandboxes.v2.Player;
 
 public class RandomArtificialIntelligence implements Player {
