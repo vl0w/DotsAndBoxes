@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.gui;
+package ch.hslu.prg2.dotsandboxes.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,12 +9,10 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
-import ch.hslu.prg2.dotsandboxes.v2.Player;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameView;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameViewListener;
 
 public class Board extends JPanel implements GameView, Player {
 	private JPanel scoringBoard;
@@ -125,9 +123,9 @@ public class Board extends JPanel implements GameView, Player {
 	@Override
 	public void update(GameBoard board) {
 		setGameBoard(board);
+		dotsBoard.removeAll();
 		dotsBoard.drawLines();
-		
-
+		dotsBoard.repaint();
 		// TODO: Update scores
 	}
 
@@ -144,11 +142,11 @@ public class Board extends JPanel implements GameView, Player {
 
 	@Override
 	public void opponentTurn() {
-		scoringBoard.setBackground(Color.RED);
+		// TODO goldrändli
 	}
 
 	@Override
-	public void yourTurn() {
-		scoringBoard.setBackground(Color.BLUE);
+	public void yourTurn(GameBoard gameBoard) {
+		setGameBoard(gameBoard);
 	}
 }

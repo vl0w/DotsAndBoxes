@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.v2.view;
+package ch.hslu.prg2.dotsandboxes.view;
 
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 

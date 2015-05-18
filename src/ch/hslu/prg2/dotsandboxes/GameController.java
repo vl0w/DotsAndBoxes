@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.v2;
+package ch.hslu.prg2.dotsandboxes;
 
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
@@ -7,8 +7,8 @@ import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.model.MoveResult;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameView;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameViewListener;
+import ch.hslu.prg2.dotsandboxes.view.GameView;
+import ch.hslu.prg2.dotsandboxes.view.GameViewListener;
 
 public class GameController implements GameViewListener, GameModelListener {
 
@@ -39,11 +39,11 @@ public class GameController implements GameViewListener, GameModelListener {
 		}
 
 		if (result.isSquareCompleted()) {
-			currentPlayer.yourTurn();
+			currentPlayer.yourTurn(gameBoard);
 			waitingPlayer.opponentTurn();
 		} else {
 			switchPlayers();
-			currentPlayer.yourTurn();
+			currentPlayer.yourTurn(gameBoard);
 			waitingPlayer.opponentTurn();
 		}
 		// TODO
@@ -68,7 +68,7 @@ public class GameController implements GameViewListener, GameModelListener {
 	}
 
 	public void start() {
-		currentPlayer.yourTurn();
+		currentPlayer.yourTurn(model.getCurrentGameBoard());
 		waitingPlayer.opponentTurn();
 	}
 

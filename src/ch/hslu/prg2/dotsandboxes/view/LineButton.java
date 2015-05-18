@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.gui;
+package ch.hslu.prg2.dotsandboxes.view;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -37,7 +37,7 @@ public class LineButton extends JButton {
 		setOpaque(true);
 
 		setBackground(Color.GREEN);
-
+		setRolloverEnabled(true);
 		addChangeListener(new ChangeListener() {
 
 			@Override
@@ -58,7 +58,6 @@ public class LineButton extends JButton {
 						setBackground(DEFAULT_LINE_COLOR);
 						setCursor(Cursor
 								.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
 					}
 				}
 			}
@@ -67,25 +66,12 @@ public class LineButton extends JButton {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// setBackground(Color.RED);
-				// getBoard().getActualPlayer().linePressed(getD1(),getD2());
 				getBoard().linePressed(getD1(), getD2());
-				// System.out.println("LinePressed from "
-				// + getBoard().getActualPlayer().toString() + " "
-				// + getD1().toString() + " " + getD2().toString());
 			}
 		});
 
 	}
 
-	/*
-	 * @Override protected void paintComponent(Graphics g) { if
-	 * (getModel().isPressed()) { g.setColor(pressedBackgroundColor); } else if
-	 * (getModel().isRollover()) { g.setColor(hoverBackgroundColor); } else {
-	 * g.setColor(getBackground()); }
-	 * 
-	 * g.fillRect(0, 0, getWidth(), getHeight()); super.paintComponent(g); }
-	 */
 	public Dot getD1() {
 		return d1;
 	}
