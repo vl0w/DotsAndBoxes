@@ -2,6 +2,7 @@ package ch.hslu.prg2.dotsandboxes.ai;
 
 import java.util.Random;
 
+import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
@@ -9,7 +10,6 @@ import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.model.MoveResult;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
-import ch.hslu.prg2.dotsandboxes.v2.Player;
 
 public class RandomArtificialIntelligence implements Player, GameModelListener {
 

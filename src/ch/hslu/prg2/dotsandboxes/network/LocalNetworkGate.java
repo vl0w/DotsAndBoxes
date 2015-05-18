@@ -1,11 +1,11 @@
 package ch.hslu.prg2.dotsandboxes.network;
 
+import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.model.MoveResult;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
-import ch.hslu.prg2.dotsandboxes.v2.Player;
 
 public class LocalNetworkGate implements Player, GameModelListener {
 

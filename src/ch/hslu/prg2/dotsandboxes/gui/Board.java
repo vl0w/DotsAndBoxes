@@ -9,12 +9,10 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
-import ch.hslu.prg2.dotsandboxes.v2.Player;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameView;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameViewListener;
 
 public class Board extends JPanel implements GameView, Player {
 	private JPanel scoringBoard;

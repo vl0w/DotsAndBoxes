@@ -21,13 +21,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import ch.hslu.prg2.dotsandboxes.GameController;
+import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.ai.RandomArtificialIntelligence;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.GameModelImpl;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
-import ch.hslu.prg2.dotsandboxes.v2.GameController;
-import ch.hslu.prg2.dotsandboxes.v2.Player;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameView;
 
 public class SettingsDialog implements ActionListener {
 

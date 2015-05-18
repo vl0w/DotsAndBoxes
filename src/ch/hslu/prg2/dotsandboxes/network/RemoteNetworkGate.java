@@ -1,11 +1,11 @@
 package ch.hslu.prg2.dotsandboxes.network;
 
+import ch.hslu.prg2.dotsandboxes.gui.GameViewListener;
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
-import ch.hslu.prg2.dotsandboxes.v2.view.GameViewListener;
 
 public class RemoteNetworkGate implements GameModel, GameViewListener {
 
