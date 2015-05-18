@@ -17,12 +17,15 @@ public class GameModelImpl implements GameModel {
 
 	@Override
 	public void handleMove(Move move) {
-		if (gameboard.setLine(move.getDot1(), move.getDot2(),
-				move.getPlayerColor())) {
-			// TODO
-			MoveResult result = new MoveResult(move, false, false);
+		if (gameboard.setLine(move.getDot1(), move.getDot2(),move.getPlayerColor())){
+			
+			boolean squareCompleted=gameboard.setLineinSquare(move.getDot1(), move.getDot2());
+			boolean gamefinished=gameboard.isGameFinished();
+			
+			MoveResult result = new MoveResult(move, gamefinished, squareCompleted);
 			notifyListenersMoveSucceeded(result);
-		} else {
+		} 
+		else {
 			notifyListenersMoveFailed(move);
 		}
 	}

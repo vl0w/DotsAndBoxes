@@ -39,7 +39,7 @@ public class GameBoardArray implements GameBoard {
 	}
 	
 	public boolean createBoard(int size){
-		//Anhand der Gr�sse Line Objekte erstellen
+		//Anhand der Groesse Line Objekte erstellen
 		this.size=size;
 		this.totalSquares=size*size;
 		int column=size;
@@ -102,7 +102,6 @@ public class GameBoardArray implements GameBoard {
 				if(board[i].getDot2().equals(dot2)){
 					if(board[i].getColor().equals(PlayerColor.NONE)){
 						board[i].setColor(color);
-						this.setLineinSquare(board[i]);
 						ret=true;
 					}
 					
@@ -112,7 +111,22 @@ public class GameBoardArray implements GameBoard {
 		return ret;
 	}
 	
-	public void setLineinSquare(Line linie){
+	public Line getLinefromDots(Dot dot1, Dot dot2){
+		Line ret=null;
+		for(int i=0;i<numberoflines;i++){
+			if(board[i].getDot1().equals(dot1)){
+				if(board[i].getDot2().equals(dot2)){
+					ret=board[i];				
+				}
+			}
+		}
+		return ret;
+	}
+	
+	public boolean setLineinSquare(Dot dot1, Dot dot2){
+		Line linie=getLinefromDots(dot1,dot2);
+		boolean ret=false;
+	
 		for( Square k: squares ){
 			if(k.getLeft().equals(linie)){
 				k.setLeftColor(linie.getColor());
@@ -126,7 +140,11 @@ public class GameBoardArray implements GameBoard {
 			else if(k.getBottom().equals(linie)){
 				k.setBottomColor(linie.getColor());
 			}
+			if(k.isSquareFull()){
+				ret=true;
+			}
 		}
+		return ret;
 	}
 	
 	public boolean isGameFinished(){
@@ -143,232 +161,7 @@ public class GameBoardArray implements GameBoard {
 			return ret=true;
 		}
 		return ret;
-	}
-	
-//	public void checkSquare(Line a){
-//		PlayerColor color=a.getColor();
-//		int position=this.getLinePosition(a);
-//		int offset=2+size*2;
-//		int dot1X=a.getDot1().getX();
-//		int dot1Y=a.getDot1().getY();
-//		int dot2X=a.getDot2().getX();
-//		int dot2Y=a.getDot2().getY();
-//		boolean ret=false;
-//		
-//		//Linker Rand
-//		if((dot1X==0)&&(dot2X==0)){
-//			if(board[position+1].getColor()!=PlayerColor.NONE){
-//				if(board[position+2].getColor()!=PlayerColor.NONE){
-//					if(board[position+offset].getColor()!=PlayerColor.NONE){
-//						
-//						if(color==PlayerColor.BLUE){
-//							this.blueSquares++;
-//							return ret=true;
-//						}
-//						else{
-//							this.redSquares++;
-//							return ret=true;
-//						}		
-//						
-//					}
-//				}	
-//			}
-//			return ret;
-//		}
-//		
-//		//Rechter Rand
-//		if((dot1X==this.size)&&(dot2X==this.size)){
-//			if(board[position-1].getColor()!=PlayerColor.NONE){
-//				if(board[position-2].getColor()!=PlayerColor.NONE){
-//					if(board[position+offset-2].getColor()!=PlayerColor.NONE){
-//						
-//						if(color==PlayerColor.BLUE){
-//							this.blueSquares++;
-//							return ret=true;
-//						}
-//						else{
-//							this.redSquares++;
-//							return ret=true;
-//						}		
-//						
-//					}
-//				}	
-//			}
-//			return ret;
-//		}
-//		
-//		//Oberer Rand
-//		if((dot1Y==0)&&(dot2Y==0)){
-//			if(board[position+1].getColor()!=PlayerColor.NONE){
-//				if(board[position-1].getColor()!=PlayerColor.NONE){
-//					if(board[position+offset-1].getColor()!=PlayerColor.NONE){
-//						
-//						if(color==PlayerColor.BLUE){
-//							this.blueSquares++;
-//							return ret=true;
-//						}
-//						else{
-//							this.redSquares++;
-//							return ret=true;
-//						}		
-//						
-//					}
-//				}	
-//			}
-//			return ret;
-//		}
-//		
-//		//Unterer Rand
-//		if((dot1Y==this.size)&&(dot2Y==this.size)){
-//			 int n=position-(offset-1)-dot1X;
-//			 
-//			 if(board[n].getColor()!=PlayerColor.NONE){
-//					if(board[n+1].getColor()!=PlayerColor.NONE){
-//						if(board[n+2].getColor()!=PlayerColor.NONE){
-//							
-//							if(color==PlayerColor.BLUE){
-//								this.blueSquares++;
-//								return ret=true;
-//							}
-//							else{
-//								this.redSquares++;
-//								return ret=true;
-//							}		
-//							
-//						}
-//					}	
-//			 }
-//			 return ret;
-//		}
-//		
-//		//F�r alle Linien die nicht am Rand liegen
-//		//Falls es eine Waagrechte Linie ist
-//			if(dot1Y==dot2Y){
-//				
-//				//Oberes K�stchen
-//				if(board[position-offset].getColor()!=PlayerColor.NONE){
-//					if(board[position-offset+1].getColor()!=PlayerColor.NONE){
-//						if(board[position-offset+2].getColor()!=PlayerColor.NONE){
-//							
-//							if(color==PlayerColor.BLUE){
-//								this.blueSquares++;
-//								ret=true;
-//							}
-//							else{
-//								this.redSquares++;
-//								ret=true;
-//							}		
-//							
-//						}
-//					}	
-//				}
-//				
-//				//Unteres K�stchen
-//				if(board[position-1].getColor()!=PlayerColor.NONE){
-//					if(board[position+1].getColor()!=PlayerColor.NONE){
-//						if(board[position+offset-1].getColor()!=PlayerColor.NONE){
-//							
-//							if(color==PlayerColor.BLUE){
-//								this.blueSquares++;
-//								ret=true;
-//							}
-//							else{
-//								this.redSquares++;
-//								ret=true;
-//							}		
-//							
-//						}
-//					}	
-//				}
-//				
-//			return ret;	
-//				
-//			}
-//			
-//			//Falls es eine senkrechte Linie ist
-//			if(dot1X==dot2X){
-//				//anderer Fall da letzte Linie auch miteinbezogen werden muss
-//				if(dot2Y==size){
-//					int n=offset-1*dot1X;
-//					//Linkes K�stchen
-//					if(board[position-1].getColor()!=PlayerColor.NONE){
-//						if(board[position-2].getColor()!=PlayerColor.NONE){
-//							if(board[position+n-2].getColor()!=PlayerColor.NONE){
-//								
-//								if(color==PlayerColor.BLUE){
-//									this.blueSquares++;
-//									ret=true;
-//								}
-//								else{
-//									this.redSquares++;
-//									ret=true;
-//								}		
-//								
-//							}
-//						}	
-//					}
-//					
-//					//Rechtes K�stchen
-//					if(board[position+1].getColor()!=PlayerColor.NONE){
-//						if(board[position+2].getColor()!=PlayerColor.NONE){
-//							if(board[position+n-1].getColor()!=PlayerColor.NONE){
-//								
-//								if(color==PlayerColor.BLUE){
-//									this.blueSquares++;
-//									ret=true;
-//								}
-//								else{
-//									this.redSquares++;
-//									ret=true;
-//								}		
-//								
-//							}
-//						}	
-//					}
-//				return ret;
-//				}
-//				else{
-//					//Linkes K�stchen
-//					if(board[position-1].getColor()!=PlayerColor.NONE){
-//						if(board[position-2].getColor()!=PlayerColor.NONE){
-//							if(board[position+offset-2].getColor()!=PlayerColor.NONE){
-//								
-//								if(color==PlayerColor.BLUE){
-//									this.blueSquares++;
-//									ret=true;
-//								}
-//								else{
-//									this.redSquares++;
-//									ret=true;
-//								}		
-//								
-//							}
-//						}	
-//					}
-//					
-//					//Rechtes K�stchen
-//					if(board[position+1].getColor()!=PlayerColor.NONE){
-//						if(board[position+2].getColor()!=PlayerColor.NONE){
-//							if(board[position+offset].getColor()!=PlayerColor.NONE){
-//								
-//								if(color==PlayerColor.BLUE){
-//									this.blueSquares++;
-//									ret=true;
-//								}
-//								else{
-//									this.redSquares++;
-//									ret=true;
-//								}		
-//								
-//							}
-//						}	
-//					}
-//					return ret;	
-//				}
-//			}
-//			return ret;	
-//		}
-	
+	}	
 
 	@Override
 	public int size() {
