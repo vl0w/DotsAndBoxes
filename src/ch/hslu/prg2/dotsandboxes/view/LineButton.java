@@ -30,8 +30,6 @@ public class LineButton extends JButton {
 		this.d2 = d2;
 		this.board = board;
 
-		System.out.println("LineButton created Dot1: " + d1.toString()
-				+ " Dot2: " + d2.toString());
 		setBorderPainted(false);
 		setFocusPainted(false);
 
@@ -68,25 +66,12 @@ public class LineButton extends JButton {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// setBackground(Color.RED);
-				// getBoard().getActualPlayer().linePressed(getD1(),getD2());
 				getBoard().linePressed(getD1(), getD2());
-				// System.out.println("LinePressed from "
-				// + getBoard().getActualPlayer().toString() + " "
-				// + getD1().toString() + " " + getD2().toString());
 			}
 		});
 
 	}
 
-	/*
-	 * @Override protected void paintComponent(Graphics g) { if
-	 * (getModel().isPressed()) { g.setColor(pressedBackgroundColor); } else if
-	 * (getModel().isRollover()) { g.setColor(hoverBackgroundColor); } else {
-	 * g.setColor(getBackground()); }
-	 * 
-	 * g.fillRect(0, 0, getWidth(), getHeight()); super.paintComponent(g); }
-	 */
 	public Dot getD1() {
 		return d1;
 	}
