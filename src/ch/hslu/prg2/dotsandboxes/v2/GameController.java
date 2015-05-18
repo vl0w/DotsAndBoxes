@@ -39,11 +39,11 @@ public class GameController implements GameViewListener, GameModelListener {
 		}
 
 		if (result.isSquareCompleted()) {
-			currentPlayer.yourTurn();
+			currentPlayer.yourTurn(gameBoard);
 			waitingPlayer.opponentTurn();
 		} else {
 			switchPlayers();
-			currentPlayer.yourTurn();
+			currentPlayer.yourTurn(gameBoard);
 			waitingPlayer.opponentTurn();
 		}
 		// TODO
@@ -68,7 +68,7 @@ public class GameController implements GameViewListener, GameModelListener {
 	}
 
 	public void start() {
-		currentPlayer.yourTurn();
+		currentPlayer.yourTurn(model.getCurrentGameBoard());
 		waitingPlayer.opponentTurn();
 	}
 

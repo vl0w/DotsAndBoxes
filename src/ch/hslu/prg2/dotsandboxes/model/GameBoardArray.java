@@ -71,16 +71,14 @@ public class GameBoardArray implements GameBoard {
 
 	@Override
 	public PlayerColor getLineColor(Dot dot1, Dot dot2) {
-		PlayerColor ret = PlayerColor.NONE;
 		for (int i = 0; i < numberoflines; i++) {
 			if (board[i].getDot1().equals(dot1)) {
 				if (board[i].getDot2().equals(dot2)) {
-					ret = board[i].getColor();
-					return ret;
+					return board[i].getColor();
 				}
 			}
 		}
-		return ret;
+		return PlayerColor.NONE;
 	}
 
 	public int getLinePosition(Line a) {
@@ -98,19 +96,18 @@ public class GameBoardArray implements GameBoard {
 	}
 
 	public boolean setLine(Dot dot1, Dot dot2, PlayerColor color) {
-		boolean ret = false;
 		for (int i = 0; i < numberoflines; i++) {
 			if (board[i].getDot1().equals(dot1)) {
 				if (board[i].getDot2().equals(dot2)) {
 					if (board[i].getColor().equals(PlayerColor.NONE)) {
 						board[i].setColor(color);
-						return ret = true;
+						return true;
 					}
 
 				}
 			}
 		}
-		return ret;
+		return false;
 	}
 
 	public Line getLinefromDots(Dot dot1, Dot dot2) {
@@ -127,23 +124,32 @@ public class GameBoardArray implements GameBoard {
 
 	public boolean setLineinSquare(Dot dot1, Dot dot2) {
 		Line linie = getLinefromDots(dot1, dot2);
-		boolean ret = false;
+		boolean oneSquareFilledByMove = false;
 
-		for (Square k : squares) {
-			if (k.getLeft().equals(linie)) {
-				k.setLeftColor(linie.getColor());
-			} else if (k.getTop().equals(linie)) {
-				k.setTopColor(linie.getColor());
-			} else if (k.getRight().equals(linie)) {
-				k.setRightColor(linie.getColor());
-			} else if (k.getBottom().equals(linie)) {
-				k.setBottomColor(linie.getColor());
-			}
-			if (k.isSquareFull()) {
-				ret = true;
+		for (Square square : squares) {
+			if (square.getLeft().equals(linie)) {
+				square.setLeftColor(linie.getColor());
+				if (square.isSquareFull()) {
+					oneSquareFilledByMove = true;
+				}
+			} else if (square.getTop().equals(linie)) {
+				square.setTopColor(linie.getColor());
+				if (square.isSquareFull()) {
+					oneSquareFilledByMove = true;
+				}
+			} else if (square.getRight().equals(linie)) {
+				square.setRightColor(linie.getColor());
+				if (square.isSquareFull()) {
+					oneSquareFilledByMove = true;
+				}
+			} else if (square.getBottom().equals(linie)) {
+				square.setBottomColor(linie.getColor());
+				if (square.isSquareFull()) {
+					oneSquareFilledByMove = true;
+				}
 			}
 		}
-		return ret;
+		return oneSquareFilledByMove;
 	}
 
 	public boolean isGameFinished() {

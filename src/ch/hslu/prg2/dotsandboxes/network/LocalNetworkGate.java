@@ -16,7 +16,7 @@ public class LocalNetworkGate implements Player, GameModelListener {
 	}
 
 	@Override
-	public void yourTurn() {
+	public void yourTurn(GameBoard gameBoard) {
 		// TODO Auto-generated method stub
 
 	}

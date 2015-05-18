@@ -39,7 +39,7 @@ public class LineButton extends JButton {
 		setOpaque(true);
 
 		setBackground(Color.GREEN);
-
+		setRolloverEnabled(true);
 		addChangeListener(new ChangeListener() {
 
 			@Override
@@ -60,7 +60,6 @@ public class LineButton extends JButton {
 						setBackground(DEFAULT_LINE_COLOR);
 						setCursor(Cursor
 								.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
 					}
 				}
 			}
