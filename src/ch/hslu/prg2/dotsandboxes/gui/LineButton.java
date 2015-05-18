@@ -15,21 +15,21 @@ import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 public class LineButton extends JButton {
 
 	private static final long serialVersionUID = 8608522602233328374L;
-	private final static Color HOVER_BACKGROUND_COLOR   = Color.GRAY;
+	private final static Color HOVER_BACKGROUND_COLOR = Color.GRAY;
 	private final static Color PRESSED_BACKGROUND_COLOR = Color.RED;
-	public final static Color DEFAULT_LINE_COLOR 		= Color.GREEN;
+	public final static Color DEFAULT_LINE_COLOR = Color.GREEN;
 
 	private Dot d1;
 	private Dot d2;
 	private Board board;
 
-	public LineButton(Dot d1, Dot d2,Board board) {
+	public LineButton(Dot d1, Dot d2, Board board) {
 		super();
 
 		this.d1 = d1;
 		this.d2 = d2;
 		this.board = board;
-		
+
 		System.out.println("LineButton created Dot1: " + d1.toString()
 				+ " Dot2: " + d2.toString());
 		setBorderPainted(false);
@@ -44,8 +44,9 @@ public class LineButton extends JButton {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				if (getBoard().getGameBoard()!=null && 
-				   (getBoard().getGameBoard().getLineColor(getD1(), getD2()) == PlayerColor.NONE)) {
+				if (getBoard().getGameBoard() != null
+						&& (getBoard().getGameBoard().getLineColor(getD1(),
+								getD2()) == PlayerColor.NONE)) {
 					if (getModel().isRollover()) {
 						setBackground(HOVER_BACKGROUND_COLOR);
 
@@ -68,15 +69,15 @@ public class LineButton extends JButton {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//setBackground(Color.RED);
-				getBoard().getActualPlayer().linePressed(getD1(),getD2());
-				getBoard().linePressed(getD1(),getD2());
-				System.out.println("LinePressed from "+getBoard().getActualPlayer().toString()+
-						" "+getD1().toString()+" "+getD2().toString());
+				// setBackground(Color.RED);
+				// getBoard().getActualPlayer().linePressed(getD1(),getD2());
+				getBoard().linePressed(getD1(), getD2());
+				// System.out.println("LinePressed from "
+				// + getBoard().getActualPlayer().toString() + " "
+				// + getD1().toString() + " " + getD2().toString());
 			}
 		});
 
-		
 	}
 
 	/*

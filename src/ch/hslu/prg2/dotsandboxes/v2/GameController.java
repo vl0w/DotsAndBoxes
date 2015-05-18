@@ -17,12 +17,16 @@ public class GameController implements GameViewListener, GameModelListener {
 	private Player currentPlayer;
 	private Player waitingPlayer;
 
-	public GameController(GameView localView, GameModel model, Player opponent) {
+	public GameController(GameView localView, GameModel model,
+			Player localPlayer, Player opponentPlayer) {
 		this.view = localView;
 		this.model = model;
-		// TODO localPlayer = ???
-		this.waitingPlayer = opponent;
+		this.currentPlayer = localPlayer;
+		this.waitingPlayer = opponentPlayer;
+
+		// Register as observer
 		localView.addViewListener(this);
+		model.addModelListener(this);
 	}
 
 	@Override
@@ -61,6 +65,11 @@ public class GameController implements GameViewListener, GameModelListener {
 		PlayerColor playerColor = currentPlayer.getColor();
 		Move move = new Move(dotOne, dotTwo, playerColor);
 		model.handleMove(move);
+	}
+
+	public void start() {
+		currentPlayer.yourTurn();
+		waitingPlayer.opponentTurn();
 	}
 
 }
