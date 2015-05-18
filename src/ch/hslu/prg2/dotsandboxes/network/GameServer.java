@@ -12,28 +12,35 @@ import java.net.Socket;
 public class GameServer {
 	private static final int PORT_NUMBER = 7777;
 	private ServerSocket serverSocket;
+    private IncomingRequestHandler requestHandler;
 
-	/**
-	 * Create a TCP game server.
-	 */
-	public GameServer() {
-		try {
-			serverSocket = new ServerSocket(PORT_NUMBER);
-		} catch (IOException ioe) {
-			System.err.println("Error: " + ioe.getMessage());
-		}
+    public GameServer(IncomingRequestHandler requestHandler) {
+        this.requestHandler = requestHandler;
+    }
+
+	public void startListen() throws IOException {
+        serverSocket = new ServerSocket(PORT_NUMBER);
+        IncomingConnectionListener icl = new IncomingConnectionListener();
+        new Thread(icl).start();
 	}
 
-	private void listen() {
-		while (true) {
-			try {
-				System.out.println("Warten auf Verbindung ...");
-				Socket client = serverSocket.accept();
-				System.out.println("Verbunden mit " + client.getInetAddress());
-				// TODO
-			} catch (IOException ioe) {
-				System.err.println("Error: " + ioe.getMessage());
-			}
-		}
-	}
+    private class IncomingConnectionListener implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    System.out.println("Warten auf Verbindung ...");
+                    Socket client = serverSocket.accept();
+                    System.out.println("Verbunden mit " + client.getInetAddress());
+                    if(requestHandler.acceptRequest()){
+                        new Thread(new IncomingObjectListener(client, new RemoteNetworkListenerDelegate())).start();
+                    }else{
+                        // fehler zurückmelden oder nichts tun
+                    }
+                } catch (IOException ioe) {
+                    System.err.println("Error: " + ioe.getMessage());
+                }
+            }
+        }
+    }
 }
