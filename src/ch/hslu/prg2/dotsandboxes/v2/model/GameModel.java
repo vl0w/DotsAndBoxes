@@ -4,4 +4,6 @@ import ch.hslu.prg2.dotsandboxes.game.Move;
 
 public interface GameModel {
 	void handleMove(Move move);
+
+	void addModelListener(GameModelListener listener);
 }
