@@ -17,12 +17,12 @@ public class GameController implements GameViewListener, GameModelListener {
 	private Player currentPlayer;
 	private Player waitingPlayer;
 
-	public GameController(GameView view, GameModel model, Player opponent) {
-		this.view = view;
+	public GameController(GameView localView, GameModel model, Player opponent) {
+		this.view = localView;
 		this.model = model;
 		// TODO localPlayer = ???
 		this.waitingPlayer = opponent;
-		view.addViewListener(this);
+		localView.addViewListener(this);
 	}
 
 	@Override
