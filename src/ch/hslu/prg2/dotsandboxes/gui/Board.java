@@ -3,11 +3,13 @@ package ch.hslu.prg2.dotsandboxes.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ch.hslu.prg2.dotsandboxes.model.GameBoard;
+import ch.hslu.prg2.dotsandboxes.game.Dot;
+import ch.hslu.prg2.dotsandboxes.game.GameBoard;
 
 
 public class Board extends JPanel {// implements Player {
@@ -21,23 +23,21 @@ public class Board extends JPanel {// implements Player {
 	private GUIPlayer player1;
 	private GUIPlayer player2;
 	private GUIPlayer actualPlayer;
-
-	int boarder = 20;
-	int distance = 70;
-	int radius = 5;
 	
-	int size;
+//	private List<GameViewListener> listeners;
+	
+	private int size;
 	private static final long serialVersionUID = 10L;
 
 	public Board(int size) {
 		super(new BorderLayout(),true);
 		this.size = size;
-		setPreferredSize(new Dimension(500,500));
-		
-		add(initScoringBoard(),BorderLayout.NORTH);
-
+//		listener = new List();
 		dotsBoard = new DotsBoard(size,this);
+
+		add(initScoringBoard(),BorderLayout.NORTH);
 		add(dotsBoard,BorderLayout.CENTER);	
+		setSize(new Dimension(dotsBoard.getWidth(),dotsBoard.getWidth()+scoringBoard.getHeight()+10));
 		
 		setVisible(true);
 		
@@ -61,22 +61,11 @@ public class Board extends JPanel {// implements Player {
 		scoringBoard.add(labPlayer1);
 		scoringBoard.add(labScores);
 		scoringBoard.add(labPlayer2);
+		scoringBoard.setSize(dotsBoard.getWidth(),30);
 		scoringBoard.setVisible(true);
 		return scoringBoard;
 	}
-
-	public int getBoarder() {
-		return boarder;
-	}
-
-	public int getDistance() {
-		return distance;
-	}
-
-	public int getRadius() {
-		return radius;
-	}
-
+	
 	public GameBoard getGameBoard() {
 		return gameBoard;
 	}
@@ -112,5 +101,25 @@ public class Board extends JPanel {// implements Player {
 	public DotsBoard getDotsBoard() {
 		return this.dotsBoard;
 	}
-
+/*	
+	public void addViewListener(GameViewListener listener){
+		listeners.add(listener);
+	}
+	
+	public void removeViewListener(GameViewListener listener){
+		listeners.remove(listener);
+	}
+*/	
+	protected void linePressed(Dot d1, Dot d2){
+/*	
+		for(GameViewListener listener: listeners){
+			listeners.onLineSelected(d1,d2);
+		}
+*/
+	}
+	
+	public void update(GameBoard board){
+		setGameBoard(board);
+		dotsBoard.drawLines();
+	}
 }
