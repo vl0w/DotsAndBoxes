@@ -1,6 +1,7 @@
 package ch.hslu.prg2.dotsandboxes.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -28,6 +29,8 @@ public class DotsBoard extends JPanel {
 		setBackground(Color.PINK);
 		setLayout(null);
 		drawLines();
+		int widthHeight = size*distance+(size+1)*radius+2*boarder;
+		setSize(new Dimension(widthHeight,widthHeight));
 		setVisible(true);
 	}
 

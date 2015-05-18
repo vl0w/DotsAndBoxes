@@ -44,7 +44,8 @@ public class LineButton extends JButton {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				if (getBoard().getGameBoard()!=null && (getBoard().getGameBoard().getLineColor(getD1(), getD2()) == PlayerColor.NONE)) {
+				if (getBoard().getGameBoard()!=null && 
+				   (getBoard().getGameBoard().getLineColor(getD1(), getD2()) == PlayerColor.NONE)) {
 					if (getModel().isRollover()) {
 						setBackground(HOVER_BACKGROUND_COLOR);
 

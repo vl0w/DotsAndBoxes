@@ -21,10 +21,6 @@ public class Board extends JPanel {// implements Player {
 	private GUIPlayer player1;
 	private GUIPlayer player2;
 	private GUIPlayer actualPlayer;
-
-	int boarder = 20;
-	int distance = 70;
-	int radius = 5;
 	
 	int size;
 	private static final long serialVersionUID = 10L;
@@ -32,12 +28,12 @@ public class Board extends JPanel {// implements Player {
 	public Board(int size) {
 		super(new BorderLayout(),true);
 		this.size = size;
-		setPreferredSize(new Dimension(500,500));
-		
-		add(initScoringBoard(),BorderLayout.NORTH);
 
 		dotsBoard = new DotsBoard(size,this);
+
+		add(initScoringBoard(),BorderLayout.NORTH);
 		add(dotsBoard,BorderLayout.CENTER);	
+		setSize(new Dimension(dotsBoard.getWidth(),dotsBoard.getWidth()+scoringBoard.getHeight()+10));
 		
 		setVisible(true);
 		
@@ -61,22 +57,11 @@ public class Board extends JPanel {// implements Player {
 		scoringBoard.add(labPlayer1);
 		scoringBoard.add(labScores);
 		scoringBoard.add(labPlayer2);
+		scoringBoard.setSize(dotsBoard.getWidth(),30);
 		scoringBoard.setVisible(true);
 		return scoringBoard;
 	}
-
-	public int getBoarder() {
-		return boarder;
-	}
-
-	public int getDistance() {
-		return distance;
-	}
-
-	public int getRadius() {
-		return radius;
-	}
-
+	
 	public GameBoard getGameBoard() {
 		return gameBoard;
 	}

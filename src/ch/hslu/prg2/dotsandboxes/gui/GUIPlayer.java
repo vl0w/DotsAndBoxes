@@ -1,5 +1,11 @@
 package ch.hslu.prg2.dotsandboxes.gui;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
+
 import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.game.Dot;
 import ch.hslu.prg2.dotsandboxes.game.GameBoard;
@@ -21,24 +27,8 @@ public class GUIPlayer implements Player {
 	public Move makeMove(GameBoard board) {
 		getBoard().setGameBoard(board);
 		getBoard().getDotsBoard().drawLines();
-		Thread t = new Thread(){
+		
 
-			@Override
-			public void run() {
-				while(!moved){
-					try {
-						sleep(100);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				System.out.println("Whuup_Thread_Verlassen");
-				
-				moved=false;
-			}
-			
-		};t.start();
-		System.out.println("Whuup_Thread_kurz vor Ende");
 		return actualMove;
 
 	}
