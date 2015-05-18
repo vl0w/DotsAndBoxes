@@ -132,7 +132,7 @@ public class SettingsDialog implements ActionListener {
 				Player localPlayer = mainWindow.getBoard();
 				Player opponent = createOpponent(model);
 
-				if(opponent!=null) {
+				if (opponent != null) {
 					GameController controller = new GameController(view, model,
 							localPlayer, opponent);
 
@@ -167,12 +167,15 @@ public class SettingsDialog implements ActionListener {
 		} else {
 			if (butNetwork.isSelected()) {
 				try {
-					GameClient client = new GameClient("localhost", model);
+					GameClient client = new GameClient(textField.getText(),
+							model);
 					LocalNetworkGate gate = client.connect();
 					model.addModelListener(gate);
 					return gate;
 				} catch (IOException e) {
-					JOptionPane.showConfirmDialog(null, "Reason: "+e.getMessage(),"Connection refused", JOptionPane.YES_OPTION);
+					JOptionPane.showConfirmDialog(null,
+							"Reason: " + e.getMessage(), "Connection refused",
+							JOptionPane.YES_OPTION);
 					return null;
 				}
 			} else {
