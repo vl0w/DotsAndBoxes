@@ -102,7 +102,7 @@ public class GameBoardArray implements GameBoard {
 				if(board[i].getDot2().equals(dot2)){
 					if(board[i].getColor().equals(PlayerColor.NONE)){
 						board[i].setColor(color);
-						ret=true;
+						return ret=true;
 					}
 					
 				}
