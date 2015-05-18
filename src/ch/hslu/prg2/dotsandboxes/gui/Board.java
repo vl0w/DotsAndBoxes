@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ch.hslu.prg2.dotsandboxes.game.GameBoard;
+import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 
 
 public class Board extends JPanel {// implements Player {

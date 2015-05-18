@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.game;
+package ch.hslu.prg2.dotsandboxes.model;
 
 public class Square {
 	private Line left;

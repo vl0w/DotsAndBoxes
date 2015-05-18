@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.game;
+package ch.hslu.prg2.dotsandboxes.model;
 
 public class GameBoardArray implements GameBoard {
 		
@@ -39,7 +39,7 @@ public class GameBoardArray implements GameBoard {
 	}
 	
 	public boolean createBoard(int size){
-		//Anhand der Grösse Line Objekte erstellen
+		//Anhand der Grï¿½sse Line Objekte erstellen
 		this.size=size;
 		this.totalSquares=size*size;
 		int column=size;
@@ -241,11 +241,11 @@ public class GameBoardArray implements GameBoard {
 //			 return ret;
 //		}
 //		
-//		//Für alle Linien die nicht am Rand liegen
+//		//Fï¿½r alle Linien die nicht am Rand liegen
 //		//Falls es eine Waagrechte Linie ist
 //			if(dot1Y==dot2Y){
 //				
-//				//Oberes Kästchen
+//				//Oberes Kï¿½stchen
 //				if(board[position-offset].getColor()!=PlayerColor.NONE){
 //					if(board[position-offset+1].getColor()!=PlayerColor.NONE){
 //						if(board[position-offset+2].getColor()!=PlayerColor.NONE){
@@ -263,7 +263,7 @@ public class GameBoardArray implements GameBoard {
 //					}	
 //				}
 //				
-//				//Unteres Kästchen
+//				//Unteres Kï¿½stchen
 //				if(board[position-1].getColor()!=PlayerColor.NONE){
 //					if(board[position+1].getColor()!=PlayerColor.NONE){
 //						if(board[position+offset-1].getColor()!=PlayerColor.NONE){
@@ -290,7 +290,7 @@ public class GameBoardArray implements GameBoard {
 //				//anderer Fall da letzte Linie auch miteinbezogen werden muss
 //				if(dot2Y==size){
 //					int n=offset-1*dot1X;
-//					//Linkes Kästchen
+//					//Linkes Kï¿½stchen
 //					if(board[position-1].getColor()!=PlayerColor.NONE){
 //						if(board[position-2].getColor()!=PlayerColor.NONE){
 //							if(board[position+n-2].getColor()!=PlayerColor.NONE){
@@ -308,7 +308,7 @@ public class GameBoardArray implements GameBoard {
 //						}	
 //					}
 //					
-//					//Rechtes Kästchen
+//					//Rechtes Kï¿½stchen
 //					if(board[position+1].getColor()!=PlayerColor.NONE){
 //						if(board[position+2].getColor()!=PlayerColor.NONE){
 //							if(board[position+n-1].getColor()!=PlayerColor.NONE){
@@ -328,7 +328,7 @@ public class GameBoardArray implements GameBoard {
 //				return ret;
 //				}
 //				else{
-//					//Linkes Kästchen
+//					//Linkes Kï¿½stchen
 //					if(board[position-1].getColor()!=PlayerColor.NONE){
 //						if(board[position-2].getColor()!=PlayerColor.NONE){
 //							if(board[position+offset-2].getColor()!=PlayerColor.NONE){
@@ -346,7 +346,7 @@ public class GameBoardArray implements GameBoard {
 //						}	
 //					}
 //					
-//					//Rechtes Kästchen
+//					//Rechtes Kï¿½stchen
 //					if(board[position+1].getColor()!=PlayerColor.NONE){
 //						if(board[position+2].getColor()!=PlayerColor.NONE){
 //							if(board[position+offset].getColor()!=PlayerColor.NONE){

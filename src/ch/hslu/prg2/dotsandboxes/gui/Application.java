@@ -4,7 +4,8 @@ import java.awt.EventQueue;
 import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
-import ch.hslu.prg2.dotsandboxes.game.Game;
+
+import ch.hslu.prg2.dotsandboxes.model.Game;
 
 public class Application extends JFrame {
 	private Board board;

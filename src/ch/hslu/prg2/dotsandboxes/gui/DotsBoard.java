@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import ch.hslu.prg2.dotsandboxes.game.Dot;
-import ch.hslu.prg2.dotsandboxes.game.PlayerColor;
+import ch.hslu.prg2.dotsandboxes.model.Dot;
+import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 
 
 

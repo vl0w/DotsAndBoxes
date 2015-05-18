@@ -1,8 +1,8 @@
 package ch.hslu.prg2.dotsandboxes.gui;
 
-import ch.hslu.prg2.dotsandboxes.game.Dot;
-import ch.hslu.prg2.dotsandboxes.game.GameBoard;
-import ch.hslu.prg2.dotsandboxes.game.Move;
+import ch.hslu.prg2.dotsandboxes.model.Dot;
+import ch.hslu.prg2.dotsandboxes.model.GameBoard;
+import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.v2.Player;
 
 public class GUIPlayer implements Player {
