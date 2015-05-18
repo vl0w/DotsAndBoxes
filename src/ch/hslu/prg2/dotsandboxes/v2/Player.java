@@ -9,7 +9,7 @@ public interface Player {
 
 	void yourTurn();
 
-	void oponnentTurn();
+	void opponentTurn();
 
 	PlayerColor getColor();
 }

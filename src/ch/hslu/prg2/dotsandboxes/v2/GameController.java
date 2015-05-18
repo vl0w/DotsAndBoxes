@@ -5,32 +5,61 @@ import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
+import ch.hslu.prg2.dotsandboxes.model.MoveResult;
+import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
+import ch.hslu.prg2.dotsandboxes.v2.view.GameView;
 import ch.hslu.prg2.dotsandboxes.v2.view.GameViewListener;
 
 public class GameController implements GameViewListener, GameModelListener {
 
-	private Player localPlayer;
-	private Player remotePlayer;
 	private GameModel model;
+	private GameView view;
+	private Player currentPlayer;
+	private Player waitingPlayer;
 
-	public GameController() {
-		// TODO define constructor
+	public GameController(GameView view, GameModel model, Player opponent) {
+		this.view = view;
+		this.model = model;
+		// TODO localPlayer = ???
+		this.waitingPlayer = opponent;
+		view.addViewListener(this);
 	}
 
 	@Override
-	public void moveDone(GameBoard gameBoard, Move move) {
-		// TODO check gamestate, notify players
+	public void moveDone(GameBoard gameBoard, MoveResult result) {
+		view.update(gameBoard);
+
+		if (result.isGameFinished()) {
+			currentPlayer.gameEnded();
+			waitingPlayer.gameEnded();
+		}
+
+		if (result.isSquareCompleted()) {
+			currentPlayer.yourTurn();
+			waitingPlayer.opponentTurn();
+		} else {
+			switchPlayers();
+			currentPlayer.yourTurn();
+			waitingPlayer.opponentTurn();
+		}
+		// TODO
+	}
+
+	private void switchPlayers() {
+		Player currentPlayer = this.currentPlayer;
+		this.currentPlayer = waitingPlayer;
+		this.waitingPlayer = currentPlayer;
 	}
 
 	@Override
 	public void moveFailed(Move move) {
 		// TODO check gamestate, notify players
-
 	}
 
 	@Override
 	public void onLineSelected(Dot dotOne, Dot dotTwo) {
-		Move move = new Move(dotOne, dotTwo, localPlayer.getColor());
+		PlayerColor playerColor = currentPlayer.getColor();
+		Move move = new Move(dotOne, dotTwo, playerColor);
 		model.handleMove(move);
 	}
 

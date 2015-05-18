@@ -19,7 +19,9 @@ public class GameModelImpl implements GameModel {
 	public void handleMove(Move move) {
 		if (gameboard.setLine(move.getDot1(), move.getDot2(),
 				move.getPlayerColor())) {
-			notifyListenersMoveSucceeded(move);
+			// TODO
+			MoveResult result = new MoveResult(move, false, false);
+			notifyListenersMoveSucceeded(result);
 		} else {
 			notifyListenersMoveFailed(move);
 		}
@@ -30,9 +32,9 @@ public class GameModelImpl implements GameModel {
 		listeners.add(listener);
 	}
 
-	private void notifyListenersMoveSucceeded(Move move) {
+	private void notifyListenersMoveSucceeded(MoveResult result) {
 		for (GameModelListener listener : listeners) {
-			listener.moveDone(gameboard, move);
+			listener.moveDone(gameboard, result);
 		}
 	}
 
