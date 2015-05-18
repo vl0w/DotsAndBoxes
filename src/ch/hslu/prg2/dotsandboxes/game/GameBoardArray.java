@@ -86,7 +86,7 @@ public class GameBoardArray implements GameBoard {
 	}
 	
 	
-	public void checkSquare(Line a){
+	public boolean checkSquare(Line a){
 		PlayerColor color=a.getColor();
 		int position=this.getLinePosition(a);
 		int offset=2+size*2;
@@ -94,6 +94,7 @@ public class GameBoardArray implements GameBoard {
 		int dot1Y=a.getDot1().getY();
 		int dot2X=a.getDot2().getX();
 		int dot2Y=a.getDot2().getY();
+		boolean ret=false;
 		
 		//Linker Rand
 		if((dot1X==0)&&(dot2X==0)){
@@ -103,14 +104,17 @@ public class GameBoardArray implements GameBoard {
 						
 						if(color==PlayerColor.BLUE){
 							this.blueSquares++;
+							return ret=true;
 						}
 						else{
 							this.redSquares++;
+							return ret=true;
 						}		
 						
 					}
 				}	
 			}
+			return ret;
 		}
 		
 		//Rechter Rand
@@ -121,14 +125,17 @@ public class GameBoardArray implements GameBoard {
 						
 						if(color==PlayerColor.BLUE){
 							this.blueSquares++;
+							return ret=true;
 						}
 						else{
 							this.redSquares++;
+							return ret=true;
 						}		
 						
 					}
 				}	
 			}
+			return ret;
 		}
 		
 		//Oberer Rand
@@ -139,14 +146,17 @@ public class GameBoardArray implements GameBoard {
 						
 						if(color==PlayerColor.BLUE){
 							this.blueSquares++;
+							return ret=true;
 						}
 						else{
 							this.redSquares++;
+							return ret=true;
 						}		
 						
 					}
 				}	
 			}
+			return ret;
 		}
 		
 		//Unterer Rand
@@ -159,19 +169,21 @@ public class GameBoardArray implements GameBoard {
 							
 							if(color==PlayerColor.BLUE){
 								this.blueSquares++;
+								return ret=true;
 							}
 							else{
 								this.redSquares++;
+								return ret=true;
 							}		
 							
 						}
 					}	
-				}
+			 }
+			 return ret;
 		}
 		
 		//Für alle Linien die nicht am Rand liegen
-		else{
-			//Falls es eine Waagrechte Linie ist
+		//Falls es eine Waagrechte Linie ist
 			if(dot1Y==dot2Y){
 				
 				//Oberes Kästchen
@@ -181,9 +193,11 @@ public class GameBoardArray implements GameBoard {
 							
 							if(color==PlayerColor.BLUE){
 								this.blueSquares++;
+								ret=true;
 							}
 							else{
 								this.redSquares++;
+								ret=true;
 							}		
 							
 						}
@@ -197,29 +211,104 @@ public class GameBoardArray implements GameBoard {
 							
 							if(color==PlayerColor.BLUE){
 								this.blueSquares++;
+								ret=true;
 							}
 							else{
 								this.redSquares++;
+								ret=true;
 							}		
 							
 						}
 					}	
 				}
 				
-				
+			return ret;	
 				
 			}
 			
 			//Falls es eine senkrechte Linie ist
 			if(dot1X==dot2X){
 				//anderer Fall da letzte Linie auch miteinbezogen werden muss
-				
-				
+				if(dot2Y==size){
+					int n=offset-1*dot1X;
+					//Linkes Kästchen
+					if(board[position-1].getColor()!=PlayerColor.NONE){
+						if(board[position-2].getColor()!=PlayerColor.NONE){
+							if(board[position+n-2].getColor()!=PlayerColor.NONE){
+								
+								if(color==PlayerColor.BLUE){
+									this.blueSquares++;
+									ret=true;
+								}
+								else{
+									this.redSquares++;
+									ret=true;
+								}		
+								
+							}
+						}	
+					}
+					
+					//Rechtes Kästchen
+					if(board[position+1].getColor()!=PlayerColor.NONE){
+						if(board[position+2].getColor()!=PlayerColor.NONE){
+							if(board[position+n-1].getColor()!=PlayerColor.NONE){
+								
+								if(color==PlayerColor.BLUE){
+									this.blueSquares++;
+									ret=true;
+								}
+								else{
+									this.redSquares++;
+									ret=true;
+								}		
+								
+							}
+						}	
+					}
+				return ret;
+				}
+				else{
+					//Linkes Kästchen
+					if(board[position-1].getColor()!=PlayerColor.NONE){
+						if(board[position-2].getColor()!=PlayerColor.NONE){
+							if(board[position+offset-2].getColor()!=PlayerColor.NONE){
+								
+								if(color==PlayerColor.BLUE){
+									this.blueSquares++;
+									ret=true;
+								}
+								else{
+									this.redSquares++;
+									ret=true;
+								}		
+								
+							}
+						}	
+					}
+					
+					//Rechtes Kästchen
+					if(board[position+1].getColor()!=PlayerColor.NONE){
+						if(board[position+2].getColor()!=PlayerColor.NONE){
+							if(board[position+offset].getColor()!=PlayerColor.NONE){
+								
+								if(color==PlayerColor.BLUE){
+									this.blueSquares++;
+									ret=true;
+								}
+								else{
+									this.redSquares++;
+									ret=true;
+								}		
+								
+							}
+						}	
+					}
+					return ret;	
+				}
 			}
-			
+			return ret;	
 		}
-				
-	}
 	
 
 	@Override
