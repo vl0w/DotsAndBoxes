@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.gui;
+package ch.hslu.prg2.dotsandboxes.view;
 
 import java.awt.Dimension;
 import java.awt.HeadlessException;
