@@ -13,6 +13,13 @@ public class TestingGameBoard {
 			System.out.print(test.getBoard()[i].getDot2().getY());
 			System.out.println(test.getBoard()[i].getDot2().getX());
 		}
+		//Folgende Position abfrage gibt 0??
+		System.out.println(test.getLinePosition(test.getBoard()[8]));
+		System.out.println(test.checkSquare(test.getBoard()[1]));
+		System.out.println(test.checkSquare(test.getBoard()[9]));
+		//System.out.println(test.checkSquare(test.getBoard()[8]));
+		//System.out.println(test.checkSquare(test.getBoard()[36]));
+		//System.out.println(test.checkSquare(test.getBoard()[21]));
 	}
 	
 }
