@@ -126,6 +126,7 @@ public class Board extends JPanel implements GameView, Player {
 	public void update(GameBoard board) {
 		setGameBoard(board);
 		dotsBoard.drawLines();
+		
 
 		// TODO: Update scores
 	}
@@ -143,11 +144,11 @@ public class Board extends JPanel implements GameView, Player {
 
 	@Override
 	public void opponentTurn() {
-		// TODO goldrändli
+		scoringBoard.setBackground(Color.RED);
 	}
 
 	@Override
 	public void yourTurn() {
-		// TODO goldrändli
+		scoringBoard.setBackground(Color.BLUE);
 	}
 }

@@ -30,8 +30,6 @@ public class LineButton extends JButton {
 		this.d2 = d2;
 		this.board = board;
 
-		System.out.println("LineButton created Dot1: " + d1.toString()
-				+ " Dot2: " + d2.toString());
 		setBorderPainted(false);
 		setFocusPainted(false);
 
