@@ -28,6 +28,8 @@ import ch.hslu.prg2.dotsandboxes.ai.RandomArtificialIntelligence;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.GameModelImpl;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
+import ch.hslu.prg2.dotsandboxes.network.GameClient;
+import ch.hslu.prg2.dotsandboxes.network.LocalNetworkGate;
 
 public class SettingsDialog implements ActionListener {
 
@@ -130,13 +132,15 @@ public class SettingsDialog implements ActionListener {
 				Player localPlayer = mainWindow.getBoard();
 				Player opponent = createOpponent(model);
 
-				GameController controller = new GameController(view, model,
-						localPlayer, opponent);
+				if(opponent!=null) {
+					GameController controller = new GameController(view, model,
+							localPlayer, opponent);
 
-				controller.start();
+					controller.start();
 
-				dialog.setVisible(false);
-				dialog.dispose();
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
 			}
 		});
 		butCancel.addActionListener(new ActionListener() {
@@ -160,10 +164,20 @@ public class SettingsDialog implements ActionListener {
 			return new PlayerAdapter(PlayerColor.RED);
 		} else if (butAI.isSelected()) {
 			return new RandomArtificialIntelligence(PlayerColor.RED, model);
-		} else if (butNetwork.isSelected()) {
-			return null; // TODO
 		} else {
-			return null;
+			if (butNetwork.isSelected()) {
+				try {
+					GameClient client = new GameClient("localhost", model);
+					LocalNetworkGate gate = client.connect();
+					model.addModelListener(gate);
+					return gate;
+				} catch (IOException e) {
+					JOptionPane.showConfirmDialog(null, "Reason: "+e.getMessage(),"Connection refused", JOptionPane.YES_OPTION);
+					return null;
+				}
+			} else {
+				return null;
+			}
 		}
 	}
 
