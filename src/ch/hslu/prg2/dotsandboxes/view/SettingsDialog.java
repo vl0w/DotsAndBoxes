@@ -23,6 +23,7 @@ import javax.swing.event.ChangeListener;
 
 import ch.hslu.prg2.dotsandboxes.GameController;
 import ch.hslu.prg2.dotsandboxes.Player;
+import ch.hslu.prg2.dotsandboxes.PlayerAdapter;
 import ch.hslu.prg2.dotsandboxes.ai.RandomArtificialIntelligence;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.GameModelImpl;
@@ -156,7 +157,7 @@ public class SettingsDialog implements ActionListener {
 
 	private Player createOpponent(GameModel model) {
 		if (butHuman.isSelected()) {
-			return null; // TODO
+			return new PlayerAdapter(PlayerColor.RED);
 		} else if (butAI.isSelected()) {
 			return new RandomArtificialIntelligence(PlayerColor.RED, model);
 		} else if (butNetwork.isSelected()) {
