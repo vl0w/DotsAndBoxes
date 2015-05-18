@@ -4,61 +4,86 @@ import java.util.Random;
 
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
+import ch.hslu.prg2.dotsandboxes.model.GameModel;
+import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
+import ch.hslu.prg2.dotsandboxes.model.MoveResult;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 import ch.hslu.prg2.dotsandboxes.v2.Player;
 
-public class RandomArtificialIntelligence implements Player {
+public class RandomArtificialIntelligence implements Player, GameModelListener {
+
+	private GameModel model;
+	private GameBoard latestGameboard;
+	private PlayerColor playerColor;
+
+	public RandomArtificialIntelligence(PlayerColor playerColor, GameModel model) {
+		this.playerColor = playerColor;
+		this.model = model;
+	}
 
 	@Override
-	public Move makeMove(GameBoard board) {
+	public void moveDone(GameBoard gameBoard, MoveResult result) {
+		this.latestGameboard = gameBoard;
+	}
+
+	@Override
+	public void moveFailed(Move move) {
+		// This logic doesn't care
+	}
+
+	@Override
+	public void gameEnded() {
+		// This logic doesn't care
+	}
+
+	@Override
+	public void opponentTurn() {
+		// This logic doesn't care
+	}
+
+	@Override
+	public void yourTurn() {
 		Move move = null;
 
 		while (move == null) {
-			Dot dotOne = chooseRandomDot(board.size());
+			Dot dotOne = chooseRandomDot(latestGameboard.size());
 
-			if (lineIsValid(dotOne, dotAbove(dotOne), board)) {
-				move = new Move(dotOne, dotAbove(dotOne));
-			} else if (lineIsValid(dotOne, dotBelow(dotOne), board)) {
-				move = new Move(dotOne, dotBelow(dotOne));
-			} else if (lineIsValid(dotOne, dotLeft(dotOne), board)) {
-				move = new Move(dotOne, dotLeft(dotOne));
-			} else if (lineIsValid(dotOne, dotRight(dotOne), board)) {
-				move = new Move(dotOne, dotRight(dotOne));
+			if (lineIsValid(dotOne, dotAbove(dotOne), latestGameboard)) {
+				move = new Move(dotOne, dotAbove(dotOne), getColor());
+			} else if (lineIsValid(dotOne, dotBelow(dotOne), latestGameboard)) {
+				move = new Move(dotOne, dotBelow(dotOne), getColor());
+			} else if (lineIsValid(dotOne, dotLeft(dotOne), latestGameboard)) {
+				move = new Move(dotOne, dotLeft(dotOne), getColor());
+			} else if (lineIsValid(dotOne, dotRight(dotOne), latestGameboard)) {
+				move = new Move(dotOne, dotRight(dotOne), getColor());
 			}
 		}
 
-		return move;
+		model.handleMove(move);
 	}
 
 	@Override
-	public void notifyMoved(GameBoard board) {
-		// This logic doesn't care :)
+	public PlayerColor getColor() {
+		return playerColor;
 	}
 
-	@Override
-	public void notifyMoveFailed(GameBoard board) {
-		// This logic doesn't care :)
-	}
-
-	@Override
-	public void notifyGameEnd(GameBoard board) {
-		// This logic doesn't care :)
-	}
-
-	private boolean lineIsValid(Dot dotOne, Dot dotTwo, GameBoard board) {
-		boolean dotOneValid = isInGameBoard(dotOne, board.size());
-		boolean dotTwoValid = isInGameBoard(dotTwo, board.size());
-		boolean lineNotUsed = board.getLineColor(dotOne, dotTwo) == PlayerColor.NONE;
+	private boolean lineIsValid(Dot dotOne, Dot dotTwo,
+			GameBoard latestGameboard) {
+		boolean dotOneValid = isInGamelatestGameboard(dotOne,
+				latestGameboard.size());
+		boolean dotTwoValid = isInGamelatestGameboard(dotTwo,
+				latestGameboard.size());
+		boolean lineNotUsed = latestGameboard.getLineColor(dotOne, dotTwo) == PlayerColor.NONE;
 
 		return dotOneValid && dotTwoValid && lineNotUsed;
 	}
 
-	private boolean isInGameBoard(Dot dot, int gameBoardSize) {
+	private boolean isInGamelatestGameboard(Dot dot, int gamelatestGameboardSize) {
 		int x = dot.getX();
 		int y = dot.getY();
-		return x >= 0 && y >= 0 && x <= gameBoardSize && y <= gameBoardSize
-				&& x != y;
+		return x >= 0 && y >= 0 && x <= gamelatestGameboardSize
+				&& y <= gamelatestGameboardSize && x != y;
 	}
 
 	private Dot dotAbove(Dot dot) {
@@ -77,9 +102,9 @@ public class RandomArtificialIntelligence implements Player {
 		return new Dot(dot.getX() + 1, dot.getY());
 	}
 
-	private Dot chooseRandomDot(int gameBoardSize) {
-		int x = randomNumber(gameBoardSize);
-		int y = randomNumber(gameBoardSize);
+	private Dot chooseRandomDot(int gameboardSize) {
+		int x = randomNumber(gameboardSize);
+		int y = randomNumber(gameboardSize);
 		return new Dot(x, y);
 	}
 
