@@ -112,7 +112,7 @@ public class GameBoardArray implements GameBoard {
 	}
 	
 	public Line getLinefromDots(Dot dot1, Dot dot2){
-		Line ret;
+		Line ret=null;
 		for(int i=0;i<numberoflines;i++){
 			if(board[i].getDot1().equals(dot1)){
 				if(board[i].getDot2().equals(dot2)){
