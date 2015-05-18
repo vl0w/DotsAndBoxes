@@ -3,16 +3,11 @@ package ch.hslu.prg2.dotsandboxes.network;
 import ch.hslu.prg2.dotsandboxes.v2.Player;
 import ch.hslu.prg2.dotsandboxes.v2.model.GameModelListener;
 
-public class RemoteNetworkListener implements NetworkListener {
+public class RemoteNetworkListenerDelegate implements NetworkListenerDelegate {
 
 	private Player localPlayerDelegate;
 	private GameModelListener modelListenerDelegate;
 
-	public RemoteNetworkListener(Player localPlayerDelegate,
-			GameModelListener modelListenerDelegate) {
-		this.localPlayerDelegate = localPlayerDelegate;
-		this.modelListenerDelegate = modelListenerDelegate;
-	}
 
 	@Override
 	public void received(Object obj) {
