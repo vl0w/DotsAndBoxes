@@ -17,6 +17,7 @@ public class Game {
 	public void startGame(int size){
 		gameboard=new GameBoardArray();
 		gameboard.createBoard(size);
+		gameboard.createSquares();
 		gameLogic();
 	}
 	
