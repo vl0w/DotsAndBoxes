@@ -27,7 +27,6 @@ public class Main {
 								+ "unknown" + "./n"
 								+ "Would you like to start the game?",
 						"Request Received", JOptionPane.YES_NO_OPTION);
-				System.out.println("Result: " + result);
 				if (result == 0) {
 					return true;
 				} else {
