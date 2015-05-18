@@ -5,9 +5,9 @@ import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
-import ch.hslu.prg2.dotsandboxes.gui.SettingsDialog;
 import ch.hslu.prg2.dotsandboxes.network.GameServer;
 import ch.hslu.prg2.dotsandboxes.network.IncomingRequestHandler;
+import ch.hslu.prg2.dotsandboxes.view.SettingsDialog;
 
 public class Main {
 

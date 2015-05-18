@@ -1,7 +1,5 @@
 package ch.hslu.prg2.dotsandboxes;
 
-import ch.hslu.prg2.dotsandboxes.gui.GameView;
-import ch.hslu.prg2.dotsandboxes.gui.GameViewListener;
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
@@ -9,6 +7,8 @@ import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.model.MoveResult;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
+import ch.hslu.prg2.dotsandboxes.view.GameView;
+import ch.hslu.prg2.dotsandboxes.view.GameViewListener;
 
 public class GameController implements GameViewListener, GameModelListener {
 
