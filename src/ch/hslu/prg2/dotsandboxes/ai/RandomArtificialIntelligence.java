@@ -20,6 +20,7 @@ public class RandomArtificialIntelligence implements Player, GameModelListener {
 	public RandomArtificialIntelligence(PlayerColor playerColor, GameModel model) {
 		this.playerColor = playerColor;
 		this.model = model;
+		model.addModelListener(this);
 	}
 
 	@Override
@@ -47,15 +48,11 @@ public class RandomArtificialIntelligence implements Player, GameModelListener {
 		Move move = null;
 
 		while (move == null) {
-			Dot dotOne = chooseRandomDot(latestGameboard.size());
+			Dot dotOne = chooseRandomDot(latestGameboard.size() - 1);
 
-			if (lineIsValid(dotOne, dotAbove(dotOne), latestGameboard)) {
-				move = new Move(dotOne, dotAbove(dotOne), getColor());
-			} else if (lineIsValid(dotOne, dotBelow(dotOne), latestGameboard)) {
+			if (lineIsValid(dotOne, dotBelow(dotOne))) {
 				move = new Move(dotOne, dotBelow(dotOne), getColor());
-			} else if (lineIsValid(dotOne, dotLeft(dotOne), latestGameboard)) {
-				move = new Move(dotOne, dotLeft(dotOne), getColor());
-			} else if (lineIsValid(dotOne, dotRight(dotOne), latestGameboard)) {
+			} else if (lineIsValid(dotOne, dotRight(dotOne))) {
 				move = new Move(dotOne, dotRight(dotOne), getColor());
 			}
 		}
@@ -68,22 +65,19 @@ public class RandomArtificialIntelligence implements Player, GameModelListener {
 		return playerColor;
 	}
 
-	private boolean lineIsValid(Dot dotOne, Dot dotTwo,
-			GameBoard latestGameboard) {
-		boolean dotOneValid = isInGamelatestGameboard(dotOne,
-				latestGameboard.size());
-		boolean dotTwoValid = isInGamelatestGameboard(dotTwo,
-				latestGameboard.size());
+	private boolean lineIsValid(Dot dotOne, Dot dotTwo) {
+		boolean dotOneValid = isInGamelatestGameboard(dotOne);
+		boolean dotTwoValid = isInGamelatestGameboard(dotTwo);
 		boolean lineNotUsed = latestGameboard.getLineColor(dotOne, dotTwo) == PlayerColor.NONE;
 
 		return dotOneValid && dotTwoValid && lineNotUsed;
 	}
 
-	private boolean isInGamelatestGameboard(Dot dot, int gamelatestGameboardSize) {
+	private boolean isInGamelatestGameboard(Dot dot) {
 		int x = dot.getX();
 		int y = dot.getY();
-		return x >= 0 && y >= 0 && x <= gamelatestGameboardSize
-				&& y <= gamelatestGameboardSize && x != y;
+		int gameBoardSize = latestGameboard.size();
+		return x >= 0 && y >= 0 && x <= gameBoardSize && y <= gameBoardSize;
 	}
 
 	private Dot dotAbove(Dot dot) {
