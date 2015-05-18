@@ -1,4 +1,4 @@
-package ch.hslu.prg2.dotsandboxes.v2.network;
+package ch.hslu.prg2.dotsandboxes.network;
 
 import ch.hslu.prg2.dotsandboxes.v2.Player;
 import ch.hslu.prg2.dotsandboxes.v2.model.GameModelListener;

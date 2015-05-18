@@ -3,13 +3,15 @@ package ch.hslu.prg2.dotsandboxes.v2;
 import ch.hslu.prg2.dotsandboxes.game.Dot;
 import ch.hslu.prg2.dotsandboxes.game.GameBoard;
 import ch.hslu.prg2.dotsandboxes.game.Move;
+import ch.hslu.prg2.dotsandboxes.v2.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.v2.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.v2.view.GameViewListener;
 
 public class GameController implements GameViewListener, GameModelListener {
 
-	private LocalPlayer localPlayer;
+	private Player localPlayer;
 	private Player remotePlayer;
+	private GameModel model;
 
 	public GameController() {
 		// TODO define constructor
@@ -29,7 +31,7 @@ public class GameController implements GameViewListener, GameModelListener {
 	@Override
 	public void onLineSelected(Dot dotOne, Dot dotTwo) {
 		Move move = new Move(dotOne, dotTwo, localPlayer.getColor());
-		localPlayer.getModelUpdater().update(move);
+		model.handleMove(move);
 	}
 
 }
