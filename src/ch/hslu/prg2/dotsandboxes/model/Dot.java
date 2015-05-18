@@ -24,9 +24,23 @@ public class Dot {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	public String toString(){
-		return "x: "+getX()+" y: "+getY();
-		
+
+	@Override
+	public String toString() {
+		return "x: " + getX() + " y: " + getY();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && obj instanceof Dot) {
+			Dot other = (Dot) obj;
+			return this.x == other.x && this.y == other.y;
+		}
+		return false;
+	};
+
+	@Override
+	public int hashCode() {
+		return 7 * this.x + 23 * this.y;
 	}
 }
