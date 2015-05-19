@@ -43,6 +43,10 @@ public class GameBoardArray implements GameBoard, Serializable {
 	public Square getSquare(int i) {
 		return squares[i];
 	}
+	
+	public Square[] getSquares(){
+		return squares;
+	}
 
 	public boolean createBoard(int size) {
 		// Anhand der Groesse Line Objekte erstellen
