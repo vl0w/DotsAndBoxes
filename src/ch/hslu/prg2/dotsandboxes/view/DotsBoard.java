@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+
 import javax.swing.JPanel;
 
 import ch.hslu.prg2.dotsandboxes.model.Dot;
@@ -21,6 +22,8 @@ public class DotsBoard extends JPanel {
 
 	private Board board;
 	private int size;
+
+	private boolean doDrawTheAwesomeFireWork;
 
 	public DotsBoard(int size, Board board) {
 		this.size = size;

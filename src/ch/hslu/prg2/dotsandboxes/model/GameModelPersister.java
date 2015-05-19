@@ -17,7 +17,7 @@ public class GameModelPersister {
 
 	public static Player load(File file){
 		
-		try(FileInputStream inputStream = new FileInputStream(file);
+		try(FileInputStream inputStream = new FileInputStream(file+".data");
 				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);) 
 		{
 			return (Player) objectInputStream.readObject();
@@ -33,10 +33,11 @@ public class GameModelPersister {
 	}
 	
 	public static void save(File file){
-		try(FileOutputStream outputStream = new FileOutputStream("persistent.data");
+		try(FileOutputStream outputStream = new FileOutputStream(file+".data");
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream (outputStream);) 
 		{
-			objectOutputStream.writeObject ( file );
+			//Change new Object to GameBoard
+			objectOutputStream.writeObject (new Object());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

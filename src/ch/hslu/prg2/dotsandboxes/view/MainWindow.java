@@ -11,9 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javafx.application.Platform;
 import javafx.stage.FileChooser;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+
+import com.sun.javafx.sg.prism.NGShape.Mode;
 
 import ch.hslu.prg2.dotsandboxes.model.GameModelPersister;
 
@@ -31,7 +35,7 @@ public class MainWindow extends JFrame {
 	private void initUI() {
 		setTitle("Application");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// setSize(1000,1000);
+		//setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
 		setMenuBar(initMenuBar());
 		board = new Board(this.size);
@@ -59,6 +63,9 @@ public class MainWindow extends JFrame {
 		MenuItem saveGame = new MenuItem("Save Game");
 		saveGame.addActionListener(new MenuListener());
 		game.add(saveGame);
+		MenuItem loadGame = new MenuItem("Load Game");
+		loadGame.addActionListener(new MenuListener());
+		game.add(loadGame);
 		menuBar.add(game);
 		return menuBar;
 	}
@@ -70,12 +77,22 @@ public class MainWindow extends JFrame {
 			MenuItem actItem = (MenuItem) e.getSource();
 			switch (actItem.getLabel()){
 			case "Save Game":{ 
-				FileChooser chooser = new FileChooser();	
-				File file = chooser.showSaveDialog(null);
+
+				JFileChooser chooser = new JFileChooser();
+				chooser.showSaveDialog(null);
+				File file = chooser.getSelectedFile();
 				if (file != null){
 					GameModelPersister.save(file);
 				}	
+
 				break;
+			}case "Load Game":{
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				File file = chooser.getSelectedFile();
+				if (file != null){
+					GameModelPersister.load(file);
+				}	
 			}default:{		
 			}
 			}

@@ -4,10 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.image.Image;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ch.hslu.prg2.dotsandboxes.Player;
@@ -48,17 +56,16 @@ public class Board extends JPanel implements GameView, Player {
 		labPlayer1 = new JLabel("Player 1");
 		labPlayer2 = new JLabel("Player 2");
 		labScores = new JLabel("0 : 0");
-
-		labPlayer1.setBackground(Color.BLUE);
-		labPlayer2.setBackground(Color.RED);
-		labPlayer1.setVisible(true);
-		labPlayer2.setVisible(true);
-		labScores.setVisible(true);
+		labPlayer1.setForeground(Color.WHITE);
+		labPlayer2.setForeground(Color.WHITE);
+		labScores.setForeground(Color.WHITE);
+		
 		scoringBoard.add(labPlayer1);
 		scoringBoard.add(labScores);
 		scoringBoard.add(labPlayer2);
 		scoringBoard.setSize(dotsBoard.getWidth(), 30);
 		scoringBoard.setVisible(true);
+
 		return scoringBoard;
 	}
 
@@ -106,8 +113,30 @@ public class Board extends JPanel implements GameView, Player {
 
 	@Override
 	public void gameEnded() {
-		// TODO Auto-generated method stub
 
+		int scorePlayer1 = gameBoard.getPlayerScores(getPlayerColor());
+		int scorePlayer2 = gameBoard.getPlayerScores(getOpponentColor());
+		String winner;
+		int winnerScore= Math.max(scorePlayer1,scorePlayer2);
+		if (scorePlayer1==scorePlayer2){
+			winner ="There is no winner.";
+		} else if(winnerScore == scorePlayer1){
+			winner = "Player 1 won the game.";
+		}else{
+			winner= "Player 2 won the game.";
+		}
+		
+		int n= JOptionPane.showConfirmDialog(null,
+				"Game End. "+
+				winner +
+				" Do you want to Start a new Game?",
+				winner, 
+				JOptionPane.YES_NO_OPTION);
+		if (n == 0){
+			new SettingsDialog();
+		}else {
+			System.exit(0);
+		}
 	}
 
 	@Override
@@ -124,11 +153,14 @@ public class Board extends JPanel implements GameView, Player {
 	@Override
 	public void opponentTurn() {
 		scoringBoard.setBackground(DotsBoard.playerColorToColor(getOpponentColor()));
+		repaint();
 	}
 
 	@Override
 	public void yourTurn(GameBoard gameBoard) {
 		setGameBoard(gameBoard);
 		scoringBoard.setBackground(DotsBoard.playerColorToColor(getPlayerColor()));
+		
+		repaint();
 	}
 }

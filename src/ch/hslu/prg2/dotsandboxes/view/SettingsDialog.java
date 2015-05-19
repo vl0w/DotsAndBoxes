@@ -147,6 +147,7 @@ public class SettingsDialog implements ActionListener {
 
 					dialog.setVisible(false);
 					dialog.dispose();
+					mainWindow.toFront();
 				}
 			}
 		});
