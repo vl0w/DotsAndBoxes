@@ -11,6 +11,7 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,6 +28,7 @@ import ch.hslu.prg2.dotsandboxes.PlayerAdapter;
 import ch.hslu.prg2.dotsandboxes.ai.RandomArtificialIntelligence;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.GameModelImpl;
+import ch.hslu.prg2.dotsandboxes.model.GameModelPersister;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 import ch.hslu.prg2.dotsandboxes.network.GameClient;
 import ch.hslu.prg2.dotsandboxes.network.LocalNetworkGate;
@@ -41,10 +43,12 @@ public class SettingsDialog implements ActionListener {
 	private JRadioButton butNetwork;
 	private JSlider slider;
 	private Boolean isReadyToStart = false;
+	private JRadioButton butLoadGame;
 
 	private static final String PLAYER_HUMAN = "Mensch";
 	private static final String PLAYER_AI = "KI";
 	private static final String PLAYER_NETWORK = "Netzwerk";
+	private static final String PLAYER_LOADGAME = "Load existing Game";
 
 	public SettingsDialog() {
 		dialog = new JDialog();// new CustomDialog());
@@ -65,7 +69,7 @@ public class SettingsDialog implements ActionListener {
 		butGroup = new ButtonGroup();
 		enemy.setSize(450, 200);
 		enemy.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		enemy.setLayout(new GridLayout(4, 1));
+		enemy.setLayout(new GridLayout(5, 1));
 		textField = new JTextField("127.0.0.1");
 		textField.setEnabled(false);
 		Boolean first = true;
@@ -83,14 +87,17 @@ public class SettingsDialog implements ActionListener {
 			}
 
 		});
+		butLoadGame = new JRadioButton(PLAYER_LOADGAME);
 		butGroup.add(butHuman);
 		butGroup.add(butAI);
 		butGroup.add(butNetwork);
+		butGroup.add(butLoadGame);
 		enemy.add(butHuman);
 		enemy.add(butAI);
 		enemy.add(butNetwork);
 
 		enemy.add(textField);
+		enemy.add(butLoadGame);
 		enemy.setVisible(true);
 
 		return enemy;
@@ -164,21 +171,25 @@ public class SettingsDialog implements ActionListener {
 			return new PlayerAdapter(PlayerColor.RED);
 		} else if (butAI.isSelected()) {
 			return new RandomArtificialIntelligence(PlayerColor.RED, model);
-		} else {
-			if (butNetwork.isSelected()) {
-				try {
+		} else if (butNetwork.isSelected()) {
+			try {
 					GameClient client = new GameClient(textField.getText(),
 							model);
 					LocalNetworkGate gate = client.connect();
 					model.addModelListener(gate);
 					return gate;
-				} catch (IOException e) {
+			} catch (IOException e) {
 					JOptionPane.showConfirmDialog(null,
 							"Reason: " + e.getMessage(), "Connection refused",
 							JOptionPane.YES_OPTION);
 					return null;
-				}
-			} else {
+			}
+		}else{
+			if (butLoadGame.isSelected()){
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				return GameModelPersister.load(chooser.getSelectedFile());
+			}else{
 				return null;
 			}
 		}

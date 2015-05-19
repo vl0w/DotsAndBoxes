@@ -11,7 +11,7 @@ import java.net.Socket;
  * @author Hyunkyo Suh
  */
 public class GameServer {
-	private static final int PORT_NUMBER = 7777;
+	private static final int PORT_NUMBER = 7776;
 	private ServerSocket serverSocket;
 	private IncomingRequestHandler requestHandler;
 

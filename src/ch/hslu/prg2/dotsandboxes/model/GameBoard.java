@@ -7,4 +7,6 @@ public interface GameBoard {
 	 * @return the size of the game board. The board is always a square.
 	 */
 	int size();
+	
+	int getPlayerScores(PlayerColor color);
 }

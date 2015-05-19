@@ -3,8 +3,21 @@ package ch.hslu.prg2.dotsandboxes.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
+
+
+
+import javafx.stage.FileChooser;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,6 +25,7 @@ import javax.swing.JPanel;
 import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
+import ch.hslu.prg2.dotsandboxes.model.GameModelPersister;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 
 public class Board extends JPanel implements GameView, Player {
@@ -36,11 +50,10 @@ public class Board extends JPanel implements GameView, Player {
 		this.size = size;
 		listeners = new ArrayList<>();
 		dotsBoard = new DotsBoard(size, this);
-
 		add(initScoringBoard(), BorderLayout.NORTH);
 		add(dotsBoard, BorderLayout.CENTER);
 		setSize(new Dimension(dotsBoard.getWidth(), dotsBoard.getWidth()
-				+ scoringBoard.getHeight() + 10));
+				+ scoringBoard.getHeight() + 35));
 
 		setVisible(true);
 
@@ -49,6 +62,7 @@ public class Board extends JPanel implements GameView, Player {
 		// setActualPlayer(getPlayer1());
 
 	}
+	
 
 	private JPanel initScoringBoard() {
 		scoringBoard = new JPanel(true);

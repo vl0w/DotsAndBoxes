@@ -53,5 +53,4 @@ public class GameModelImpl implements GameModel {
 			listener.moveFailed(move);
 		}
 	}
-
 }

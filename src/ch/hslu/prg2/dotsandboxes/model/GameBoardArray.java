@@ -43,6 +43,10 @@ public class GameBoardArray implements GameBoard, Serializable {
 	public Square getSquare(int i) {
 		return squares[i];
 	}
+	
+	public Square[] getSquares(){
+		return squares;
+	}
 
 	public boolean createBoard(int size) {
 		// Anhand der Groesse Line Objekte erstellen
@@ -171,14 +175,6 @@ public class GameBoardArray implements GameBoard, Serializable {
 		}
 	}
 	
-	public int getRedPlayerPoints(){
-		return redPlayerPoints;
-	}
-	
-	public int getBluePlayerPoints(){
-		return bluePlayerPoints;
-	}
-
 	public boolean isGameFinished() {
 		int i = 0;
 		boolean ret = false;
@@ -198,6 +194,18 @@ public class GameBoardArray implements GameBoard, Serializable {
 	@Override
 	public int size() {
 		return size;
+	}
+
+	@Override
+	public int getPlayerScores(PlayerColor color) {
+	int ret=0;
+		if(color==PlayerColor.BLUE){
+			ret=bluePlayerPoints;
+		}
+		else if(color==PlayerColor.RED){
+			ret=redPlayerPoints;
+		}
+	return ret;	
 	}
 
 }
