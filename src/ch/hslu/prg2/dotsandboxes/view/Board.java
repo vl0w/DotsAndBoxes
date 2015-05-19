@@ -3,6 +3,7 @@ package ch.hslu.prg2.dotsandboxes.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +23,6 @@ public class Board extends JPanel implements GameView, Player {
 
 	private DotsBoard dotsBoard;
 	private GameBoard gameBoard;
-	// private GUIPlayer player1;
-	// private GUIPlayer player2;
-	// private GUIPlayer actualPlayer;
 
 	private List<GameViewListener> listeners;
 
@@ -36,19 +34,14 @@ public class Board extends JPanel implements GameView, Player {
 		this.size = size;
 		listeners = new ArrayList<>();
 		dotsBoard = new DotsBoard(size, this);
-
 		add(initScoringBoard(), BorderLayout.NORTH);
 		add(dotsBoard, BorderLayout.CENTER);
 		setSize(new Dimension(dotsBoard.getWidth(), dotsBoard.getWidth()
-				+ scoringBoard.getHeight() + 10));
+				+ scoringBoard.getHeight() + 35));
 
 		setVisible(true);
-
-		// setPlayer1(new GUIPlayer(true, this));
-		// setPlayer2(new GUIPlayer(false, this));
-		// setActualPlayer(getPlayer1());
-
 	}
+	
 
 	private JPanel initScoringBoard() {
 		scoringBoard = new JPanel(true);
@@ -77,30 +70,6 @@ public class Board extends JPanel implements GameView, Player {
 		this.gameBoard = gameBoard;
 	}
 
-	// public GUIPlayer getPlayer2() {
-	// return player2;
-	// }
-	//
-	// public void setPlayer2(GUIPlayer player2) {
-	// this.player2 = player2;
-	// }
-	//
-	// public GUIPlayer getPlayer1() {
-	// return player1;
-	// }
-	//
-	// public void setPlayer1(GUIPlayer player1) {
-	// this.player1 = player1;
-	// }
-	//
-	// public void setActualPlayer(GUIPlayer player) {
-	// this.actualPlayer = player1;
-	// }
-	//
-	// public GUIPlayer getActualPlayer() {
-	// return this.actualPlayer;
-	// }
-
 	public DotsBoard getDotsBoard() {
 		return this.dotsBoard;
 	}
@@ -128,6 +97,12 @@ public class Board extends JPanel implements GameView, Player {
 		dotsBoard.repaint();
 		// TODO: Update scores
 	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		labScores.setText(gameBoard.getPlayerScores(getPlayerColor())+" : "
+				+ gameBoard.getPlayerScores(PlayerColor.RED));
+	};
 
 	@Override
 	public void gameEnded() {
@@ -136,17 +111,24 @@ public class Board extends JPanel implements GameView, Player {
 	}
 
 	@Override
-	public PlayerColor getColor() {
+	public PlayerColor getPlayerColor() {
 		return PlayerColor.BLUE; // TODO
 	}
 
+	public PlayerColor getOpponentColor() {
+		return PlayerColor.RED; // TODO
+	}
+
+
+
 	@Override
 	public void opponentTurn() {
-		// TODO goldrändli
+		scoringBoard.setBackground(DotsBoard.playerColorToColor(getOpponentColor()));
 	}
 
 	@Override
 	public void yourTurn(GameBoard gameBoard) {
 		setGameBoard(gameBoard);
+		scoringBoard.setBackground(DotsBoard.playerColorToColor(getPlayerColor()));
 	}
 }

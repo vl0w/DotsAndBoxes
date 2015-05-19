@@ -11,20 +11,31 @@ import java.net.Socket;
  * @author Hyunkyo Suh
  */
 public class GameServer {
-	private static final int PORT_NUMBER = 7777;
+	private static final int PORT_NUMBER = 7776;
 	private ServerSocket serverSocket;
 	private IncomingRequestHandler requestHandler;
 
+	/**
+	 *
+	 * @param requestHandler returns if the challenge was accepted
+	 */
 	public GameServer(IncomingRequestHandler requestHandler) {
 		this.requestHandler = requestHandler;
 	}
 
+	/**
+	 *
+	 * @throws IOException
+	 */
 	public void startListen() throws IOException {
 		serverSocket = new ServerSocket(PORT_NUMBER);
 		IncomingConnectionListener icl = new IncomingConnectionListener();
 		new Thread(icl).start();
 	}
 
+	/**
+	 *
+	 */
 	private class IncomingConnectionListener implements Runnable {
 		@Override
 		public void run() {
@@ -47,6 +58,12 @@ public class GameServer {
 			}
 		}
 
+		/**
+		 *
+		 * @param socket
+		 * @param answer
+		 * @throws IOException
+		 */
 		private void writeAnswer(Socket socket, boolean answer)
 				throws IOException {
 			ObjectOutputStream outStream = new ObjectOutputStream(

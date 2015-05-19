@@ -3,6 +3,9 @@ package ch.hslu.prg2.dotsandboxes.network;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+/**
+ * @author Hyunkyo Suh, Jonas Hansen
+ */
 public class IncomingObjectListener implements Runnable {
     private Socket clientSocket;
     private NetworkListenerDelegate delegate;
