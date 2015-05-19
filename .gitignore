@@ -14,5 +14,6 @@
 
 # Build process #
 #################
+/dist/
 /build/
 build.xml
