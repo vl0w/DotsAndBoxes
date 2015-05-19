@@ -7,6 +7,9 @@ import ch.hslu.prg2.dotsandboxes.model.GameModelListener;
 import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.view.GameViewListener;
 
+/**
+ * @author Hyunkyo Suh, Jonas Hansen
+ */
 public class RemoteNetworkGate implements GameModel, GameViewListener {
 
 	@Override

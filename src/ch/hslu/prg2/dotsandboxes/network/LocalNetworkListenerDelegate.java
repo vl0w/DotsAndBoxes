@@ -3,6 +3,9 @@ package ch.hslu.prg2.dotsandboxes.network;
 import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.Move;
 
+/**
+ * @author Hyunkyo Suh, Jonas Hansen
+ */
 public class LocalNetworkListenerDelegate implements NetworkListenerDelegate {
 
 	private GameModel modelDelegate;
