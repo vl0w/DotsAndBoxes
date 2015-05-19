@@ -8,7 +8,7 @@ import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.view.GameViewListener;
 
 /**
- * @author Hyunkyo Suh, Jonas Hansen
+ * Sending game state to opponent.
  */
 public class RemoteNetworkGate implements GameModel, GameViewListener {
 

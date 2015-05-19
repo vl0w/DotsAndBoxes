@@ -1,7 +1,7 @@
 package ch.hslu.prg2.dotsandboxes.network;
 
 /**
- * @author Hyunkyo Suh, Jonas Hansen
+ * Handling game challenge request.
  */
 public interface IncomingRequestHandler {
 	boolean acceptRequest();

@@ -4,7 +4,7 @@ import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import ch.hslu.prg2.dotsandboxes.model.Move;
 
 /**
- * @author Hyunkyo Suh, Jonas Hansen
+ * Delegate incoming objects to GameModel
  */
 public class LocalNetworkListenerDelegate implements NetworkListenerDelegate {
 

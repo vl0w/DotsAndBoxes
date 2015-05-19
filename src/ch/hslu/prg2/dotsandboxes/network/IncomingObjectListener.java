@@ -4,7 +4,7 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 
 /**
- * @author Hyunkyo Suh, Jonas Hansen
+ * Listening for incoming objects.
  */
 public class IncomingObjectListener implements Runnable {
     private Socket clientSocket;
@@ -15,6 +15,9 @@ public class IncomingObjectListener implements Runnable {
         this.delegate = delegate;
     }
 
+    /**
+     * Reading incoming objects.
+     */
     @Override
     public void run() {
         try {

@@ -7,6 +7,9 @@ import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.model.MoveResult;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 
+/**
+ * Sending game state to opponent.
+ */
 public class LocalNetworkGate implements Player, GameModelListener {
 
 	@Override

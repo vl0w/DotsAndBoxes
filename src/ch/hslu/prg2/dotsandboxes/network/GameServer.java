@@ -6,9 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * A TCP game server that runs on port 7777.
- * 
- * @author Hyunkyo Suh
+ * A TCP game server.
  */
 public class GameServer {
 	private static final int PORT_NUMBER = 7776;
@@ -16,15 +14,15 @@ public class GameServer {
 	private IncomingRequestHandler requestHandler;
 
 	/**
-	 *
-	 * @param requestHandler returns if the challenge was accepted
+	 * Initiate a new game server and check for game request.
+	 * @param requestHandler true or false
 	 */
 	public GameServer(IncomingRequestHandler requestHandler) {
 		this.requestHandler = requestHandler;
 	}
 
 	/**
-	 *
+	 * Start listening on the port and waiting for incoming connection.
 	 * @throws IOException
 	 */
 	public void startListen() throws IOException {
@@ -34,7 +32,7 @@ public class GameServer {
 	}
 
 	/**
-	 *
+	 * Listening for incoming data.
 	 */
 	private class IncomingConnectionListener implements Runnable {
 		@Override
@@ -59,9 +57,9 @@ public class GameServer {
 		}
 
 		/**
-		 *
-		 * @param socket
-		 * @param answer
+		 * Answering the game request.
+		 * @param socket client address
+		 * @param answer true or false.
 		 * @throws IOException
 		 */
 		private void writeAnswer(Socket socket, boolean answer)

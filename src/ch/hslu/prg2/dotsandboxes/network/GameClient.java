@@ -7,8 +7,7 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 
 /**
- *
- * @author Hyunkyo Suh
+ * A TCP game client.
  */
 public class GameClient {
     private static final int PORT_NUMBER = 7777;
@@ -17,9 +16,9 @@ public class GameClient {
     private GameModel gameModel;
 
     /**
-     *
+     * Initiate new game client.
      * @param hostAddress IP address of the opponent
-     * @param gameModel
+     * @param gameModel Players movement
      */
     public GameClient(String hostAddress, GameModel gameModel) {
         this.hostAdress = hostAddress;
@@ -28,8 +27,8 @@ public class GameClient {
 
     /**
      * Try to make contact with the opponent
-     * @return
-     * @throws IOException
+     * @return Create LocalNetworkGate for outbound objects
+     * @throws IOException Connection failed
      */
     public LocalNetworkGate connect() throws IOException {
             clientSocket = new Socket(hostAdress, PORT_NUMBER);
