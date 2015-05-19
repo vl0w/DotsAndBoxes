@@ -30,7 +30,7 @@ public class PlayerAdapter implements Player {
 	}
 
 	@Override
-	public PlayerColor getColor() {
+	public PlayerColor getPlayerColor() {
 		return color;
 	}
 

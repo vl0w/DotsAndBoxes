@@ -50,9 +50,9 @@ public class RandomArtificialIntelligence implements Player, GameModelListener {
 			Dot dotOne = chooseRandomDot(gameBoard.size());
 
 			if (lineIsValid(dotOne, dotBelow(dotOne), gameBoard)) {
-				move = new Move(dotOne, dotBelow(dotOne), getColor());
+				move = new Move(dotOne, dotBelow(dotOne), getPlayerColor());
 			} else if (lineIsValid(dotOne, dotRight(dotOne), gameBoard)) {
-				move = new Move(dotOne, dotRight(dotOne), getColor());
+				move = new Move(dotOne, dotRight(dotOne), getPlayerColor());
 			}
 		}
 
@@ -60,7 +60,7 @@ public class RandomArtificialIntelligence implements Player, GameModelListener {
 	}
 
 	@Override
-	public PlayerColor getColor() {
+	public PlayerColor getPlayerColor() {
 		return playerColor;
 	}
 
