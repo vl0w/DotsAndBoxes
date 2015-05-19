@@ -1,11 +1,15 @@
 package ch.hslu.prg2.dotsandboxes.model;
 
-public class GameBoardArray implements GameBoard {
+import java.io.Serializable;
+
+public class GameBoardArray implements GameBoard, Serializable {
 
 	private int size;
 	private int numberoflines;
 	private Line[] board;
 	private Square[] squares;
+	private int bluePlayerPoints;
+	private int redPlayerPoints;
 	int totalSquares;
 
 	public GameBoardArray() {
@@ -39,9 +43,15 @@ public class GameBoardArray implements GameBoard {
 	public Square getSquare(int i) {
 		return squares[i];
 	}
+	
+	public Square[] getSquares(){
+		return squares;
+	}
 
 	public boolean createBoard(int size) {
 		// Anhand der Groesse Line Objekte erstellen
+		this.bluePlayerPoints=0;
+		this.redPlayerPoints=0;
 		this.size = size;
 		this.totalSquares = size * size;
 		int column = size;
@@ -131,25 +141,46 @@ public class GameBoardArray implements GameBoard {
 				square.setLeftColor(linie.getColor());
 				if (square.isSquareFull()) {
 					oneSquareFilledByMove = true;
+					updatePlayerPoints(linie.getColor());
 				}
 			} else if (square.getTop().equals(linie)) {
 				square.setTopColor(linie.getColor());
 				if (square.isSquareFull()) {
 					oneSquareFilledByMove = true;
+					updatePlayerPoints(linie.getColor());
 				}
 			} else if (square.getRight().equals(linie)) {
 				square.setRightColor(linie.getColor());
 				if (square.isSquareFull()) {
 					oneSquareFilledByMove = true;
+					updatePlayerPoints(linie.getColor());
 				}
 			} else if (square.getBottom().equals(linie)) {
 				square.setBottomColor(linie.getColor());
 				if (square.isSquareFull()) {
 					oneSquareFilledByMove = true;
+					updatePlayerPoints(linie.getColor());
 				}
 			}
 		}
 		return oneSquareFilledByMove;
+	}
+	
+	public void updatePlayerPoints(PlayerColor color){
+		if(color==PlayerColor.BLUE){
+			bluePlayerPoints++;
+		}
+		else if(color==PlayerColor.RED){
+			redPlayerPoints++;
+		}
+	}
+	
+	public int getRedPlayerPoints(){
+		return redPlayerPoints;
+	}
+	
+	public int getBluePlayerPoints(){
+		return bluePlayerPoints;
 	}
 
 	public boolean isGameFinished() {

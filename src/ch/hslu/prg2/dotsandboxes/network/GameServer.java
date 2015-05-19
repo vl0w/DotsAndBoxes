@@ -41,7 +41,7 @@ public class GameServer {
 					} else {
 						writeAnswer(client, false);
 					}
-				} catch (IOException ioe) {
+				} catch (Exception ioe) {
 					System.err.println("Error: " + ioe.getMessage());
 				}
 			}
