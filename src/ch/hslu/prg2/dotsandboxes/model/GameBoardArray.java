@@ -1,6 +1,8 @@
 package ch.hslu.prg2.dotsandboxes.model;
 
-public class GameBoardArray implements GameBoard {
+import java.io.Serializable;
+
+public class GameBoardArray implements GameBoard, Serializable {
 
 	private int size;
 	private int numberoflines;
