@@ -7,21 +7,18 @@ import ch.hslu.prg2.dotsandboxes.model.Move;
 import ch.hslu.prg2.dotsandboxes.model.MoveResult;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 
-/**
- * @author Hyunkyo Suh, Jonas Hansen
- */
 public class LocalNetworkGate implements Player, GameModelListener {
-	PlayerColor playerColor;
-	Move move;
 
 	@Override
 	public void gameEnded() {
-		// notify local opponent
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void yourTurn(GameBoard gameBoard) {
-		move
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -31,8 +28,9 @@ public class LocalNetworkGate implements Player, GameModelListener {
 	}
 
 	@Override
-	public PlayerColor getColor() {
-		return PlayerColor.valueOf();
+	public PlayerColor getPlayerColor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
