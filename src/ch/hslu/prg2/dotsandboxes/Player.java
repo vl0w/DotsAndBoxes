@@ -10,5 +10,5 @@ public interface Player {
 
 	void opponentTurn();
 
-	PlayerColor getColor();
+	PlayerColor getPlayerColor();
 }

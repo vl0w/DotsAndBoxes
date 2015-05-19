@@ -62,7 +62,7 @@ public class GameController implements GameViewListener, GameModelListener {
 
 	@Override
 	public void onLineSelected(Dot dotOne, Dot dotTwo) {
-		PlayerColor playerColor = currentPlayer.getColor();
+		PlayerColor playerColor = currentPlayer.getPlayerColor();
 		Move move = new Move(dotOne, dotTwo, playerColor);
 		model.handleMove(move);
 	}

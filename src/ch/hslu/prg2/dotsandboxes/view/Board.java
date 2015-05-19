@@ -3,21 +3,9 @@ package ch.hslu.prg2.dotsandboxes.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-
-
-import javafx.stage.FileChooser;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,7 +13,6 @@ import javax.swing.JPanel;
 import ch.hslu.prg2.dotsandboxes.Player;
 import ch.hslu.prg2.dotsandboxes.model.Dot;
 import ch.hslu.prg2.dotsandboxes.model.GameBoard;
-import ch.hslu.prg2.dotsandboxes.model.GameModelPersister;
 import ch.hslu.prg2.dotsandboxes.model.PlayerColor;
 
 public class Board extends JPanel implements GameView, Player {
@@ -36,9 +23,6 @@ public class Board extends JPanel implements GameView, Player {
 
 	private DotsBoard dotsBoard;
 	private GameBoard gameBoard;
-	// private GUIPlayer player1;
-	// private GUIPlayer player2;
-	// private GUIPlayer actualPlayer;
 
 	private List<GameViewListener> listeners;
 
@@ -56,11 +40,6 @@ public class Board extends JPanel implements GameView, Player {
 				+ scoringBoard.getHeight() + 35));
 
 		setVisible(true);
-
-		// setPlayer1(new GUIPlayer(true, this));
-		// setPlayer2(new GUIPlayer(false, this));
-		// setActualPlayer(getPlayer1());
-
 	}
 	
 
@@ -91,30 +70,6 @@ public class Board extends JPanel implements GameView, Player {
 		this.gameBoard = gameBoard;
 	}
 
-	// public GUIPlayer getPlayer2() {
-	// return player2;
-	// }
-	//
-	// public void setPlayer2(GUIPlayer player2) {
-	// this.player2 = player2;
-	// }
-	//
-	// public GUIPlayer getPlayer1() {
-	// return player1;
-	// }
-	//
-	// public void setPlayer1(GUIPlayer player1) {
-	// this.player1 = player1;
-	// }
-	//
-	// public void setActualPlayer(GUIPlayer player) {
-	// this.actualPlayer = player1;
-	// }
-	//
-	// public GUIPlayer getActualPlayer() {
-	// return this.actualPlayer;
-	// }
-
 	public DotsBoard getDotsBoard() {
 		return this.dotsBoard;
 	}
@@ -142,6 +97,12 @@ public class Board extends JPanel implements GameView, Player {
 		dotsBoard.repaint();
 		// TODO: Update scores
 	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		labScores.setText(gameBoard.getPlayerScores(getPlayerColor())+" : "
+				+ gameBoard.getPlayerScores(PlayerColor.RED));
+	};
 
 	@Override
 	public void gameEnded() {
@@ -150,17 +111,24 @@ public class Board extends JPanel implements GameView, Player {
 	}
 
 	@Override
-	public PlayerColor getColor() {
+	public PlayerColor getPlayerColor() {
 		return PlayerColor.BLUE; // TODO
 	}
 
+	public PlayerColor getOpponentColor() {
+		return PlayerColor.RED; // TODO
+	}
+
+
+
 	@Override
 	public void opponentTurn() {
-		// TODO goldrändli
+		scoringBoard.setBackground(DotsBoard.playerColorToColor(getOpponentColor()));
 	}
 
 	@Override
 	public void yourTurn(GameBoard gameBoard) {
 		setGameBoard(gameBoard);
+		scoringBoard.setBackground(DotsBoard.playerColorToColor(getPlayerColor()));
 	}
 }

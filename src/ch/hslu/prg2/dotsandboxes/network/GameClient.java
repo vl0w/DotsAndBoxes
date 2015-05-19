@@ -5,7 +5,6 @@ import ch.hslu.prg2.dotsandboxes.model.GameModel;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
  *
@@ -17,11 +16,21 @@ public class GameClient {
     private String hostAdress;
     private GameModel gameModel;
 
+    /**
+     *
+     * @param hostAddress IP address of the opponent
+     * @param gameModel
+     */
     public GameClient(String hostAddress, GameModel gameModel) {
         this.hostAdress = hostAddress;
         this.gameModel = gameModel;
     }
 
+    /**
+     * Try to make contact with the opponent
+     * @return
+     * @throws IOException
+     */
     public LocalNetworkGate connect() throws IOException {
             clientSocket = new Socket(hostAdress, PORT_NUMBER);
             ObjectInputStream inStream = new ObjectInputStream(clientSocket.getInputStream());

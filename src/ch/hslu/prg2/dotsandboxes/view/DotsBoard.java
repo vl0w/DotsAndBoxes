@@ -101,7 +101,7 @@ public class DotsBoard extends JPanel {
 		return board;
 	}
 
-	public Color playerColorToColor(PlayerColor pCol) {
+	public static Color playerColorToColor(PlayerColor pCol) {
 		Color col;
 		switch (pCol) {
 		case BLUE: {

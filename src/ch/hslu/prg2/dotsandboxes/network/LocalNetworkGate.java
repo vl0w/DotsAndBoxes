@@ -28,7 +28,7 @@ public class LocalNetworkGate implements Player, GameModelListener {
 	}
 
 	@Override
-	public PlayerColor getColor() {
+	public PlayerColor getPlayerColor() {
 		// TODO Auto-generated method stub
 		return null;
 	}
