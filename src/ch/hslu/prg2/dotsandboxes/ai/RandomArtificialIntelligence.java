@@ -47,7 +47,7 @@ public class RandomArtificialIntelligence implements Player, GameModelListener {
 		Move move = null;
 
 		while (move == null) {
-			Dot dotOne = chooseRandomDot(gameBoard.size() - 1);
+			Dot dotOne = chooseRandomDot(gameBoard.size());
 
 			if (lineIsValid(dotOne, dotBelow(dotOne), gameBoard)) {
 				move = new Move(dotOne, dotBelow(dotOne), getColor());
